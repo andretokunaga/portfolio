@@ -89,12 +89,11 @@ figure.visual > video{display:block;width:100%;height:auto;border-radius:var(--r
 .proto-start:focus-visible{outline:3px solid var(--color-accent);outline-offset:-3px}
 .proto-frame{position:absolute;top:0;left:0;border:0;transform-origin:0 0;background:#fff}
 figure.proto figcaption a{color:var(--color-accent-strong);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
-/* empresas atendidas: logos em um tom só (máscara), nome em texto quando não há logo */
+/* empresas atendidas: nomes em texto */
 .clientes{max-width:var(--stage-max);padding-block:var(--space-8);border-top:1px solid var(--color-border)}
 .clientes .eyebrow{margin-bottom:var(--space-5)}
 .clientes-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);column-gap:var(--space-5)}
 .clientes-grid li{display:flex;align-items:center;min-height:88px;border-bottom:1px solid var(--color-border);color:var(--color-text-muted)}
-.clientes-grid .logo{display:block;height:var(--h,32px);aspect-ratio:var(--r);background:currentColor;-webkit-mask-position:left center;mask-position:left center;-webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 .clientes-grid .wordmark{font-weight:700;font-size:1.3rem;letter-spacing:-.02em;line-height:1.1}
 @media(max-width:1000px){.clientes-grid{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:560px){.clientes-grid{grid-template-columns:repeat(2,1fr);column-gap:var(--space-4)}.clientes-grid li{min-height:72px}}
