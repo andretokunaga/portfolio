@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="robots" content="noindex">
+<title>Pagamento</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFFFF;--surface:#F4F4F4;--surface-2:#E8E8E8;--ink:#0A0A0A;--muted:#5C5C5C;--line-strong:#8A8A8A;--accent:#480CF8;--on-accent:#FFFFFF}
+body{margin:0;font-family:"Inter",system-ui,sans-serif;color:#0A0A0A}
+a{color:inherit;text-decoration:none}
+h1{margin:0;font-size:var(--fs-5);line-height:var(--lh-5);font-weight:800;letter-spacing:-1px}
+h3{margin:0;font-size:var(--fs-3);line-height:var(--lh-3);font-weight:700}
+p{margin:0;font-size:var(--fs-2);line-height:var(--lh-2);font-weight:500}
+.lb{font-size:var(--fs-1);line-height:var(--lh-1);font-weight:700;letter-spacing:.4px}
+.ph{flex:none;width:56px;height:56px;display:flex;align-items:center;justify-content:center;color:#5C5C5C;font-size:var(--fs-1);font-weight:500;text-align:center}
+.rw{display:flex;gap:16px;align-items:center;padding:4px 0}
+.sm{display:flex;justify-content:space-between;align-items:baseline;font-size:var(--fs-1);line-height:var(--lh-1);font-weight:500;color:#5C5C5C}
+.sm b{font-weight:700;color:#0A0A0A}
+.dv{height:2px;background:#E8E8E8;flex:none}
+.nm{font-size:var(--fs-1);line-height:var(--lh-1);font-weight:700}
+.mt{font-size:var(--fs-1);line-height:var(--lh-1);font-weight:500;color:#5C5C5C}
+.pr{font-size:var(--fs-1);font-weight:700}
+.pc{position:relative;display:flex;flex-direction:column;justify-content:center;padding:18px 24px;border-radius:20px;box-sizing:border-box;border:2px solid #8A8A8A;background:#FFFFFF}
+.pc .t{display:flex;align-items:center;gap:12px;font-size:var(--fs-title-sm);line-height:var(--lh-title-sm);font-weight:700;white-space:nowrap}
+.pc .v{margin-left:40px;display:flex;justify-content:space-between;gap:12px;font-size:var(--fs-1);line-height:var(--lh-1);font-weight:500;color:#5C5C5C}
+.pc .r{flex:none;width:28px;height:28px;border-radius:999px;border:2px solid #8A8A8A;box-sizing:border-box;background:#FFFFFF}
+.pc.on{border-color:#0A0A0A;background:#F4F4F4}
+.pc.on .r{border-color:#0A0A0A;background:radial-gradient(circle,#0A0A0A 0 5px,#FFFFFF 6px)}
+.g{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:16px;flex:1;min-height:0}
+:root{--fs-1:20px;--lh-1:28px;--fs-2:24px;--lh-2:32px;--fs-3:32px;--lh-3:40px;--fs-4:40px;--lh-4:48px;--fs-5:48px;--lh-5:56px;--fs-title-sm:28px;--lh-title-sm:34px}
+.hd{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:88px;flex:none}
+.hd>:first-child{justify-self:start}
+.hd>:last-child{justify-self:end}
+.hc{flex:none;font-size:20px;font-weight:700;letter-spacing:.4px}
+.pb,.po{display:inline-flex;align-items:center;min-height:56px;padding:0 24px;border-radius:999px;box-sizing:border-box;font-size:var(--fs-1);font-weight:700;letter-spacing:.4px;border:2px solid #8A8A8A;background:#FFFFFF}
+.po.on{background:#0A0A0A;color:#FFFFFF;border-color:#0A0A0A}
+.st{display:flex;align-items:center;gap:12px;font-size:var(--fs-1);font-weight:700;letter-spacing:.4px}
+.st span.b{display:flex;gap:6px}
+.st i{display:block;width:28px;height:8px;border-radius:999px;background:#0A0A0A}
+.st i.o{background:transparent;border:2px solid #8A8A8A;box-sizing:border-box}
+.btn{white-space:nowrap;flex:none;display:inline-flex;align-items:center;justify-content:center;min-height:64px;padding:0 32px;border-radius:999px;font-size:var(--fs-2);font-weight:700;box-sizing:border-box}
+.btn.p{background:#480CF8;color:#FFFFFF;font-weight:600}
+.btn.s{border:2px solid #8A8A8A;background:#FFFFFF}
+/* estados de interação: foco visível (accent) e pressionado */
+a:focus-visible,button:focus-visible{outline:3px solid #480CF8;outline-offset:2px}
+a,button{transition:transform .12s ease}
+a:active,button:not(.sc):not(:disabled):active{transform:scale(.98)}
+.btn.p:active,a[style*="background:#480CF8"]:active,a[style*="background: #480CF8"]:active,button[style*="background:#480CF8"]:active,button[style*="background: #480CF8"]:active{background:#3A08C6!important}
+@media (prefers-reduced-motion:reduce){a,button{transition:none}a:active,button:active{transform:none}}
+</style>
+</helmet>
+<div style="width:1280px;height:800px;box-sizing:border-box;background:#FFFFFF;display:flex;flex-direction:column;padding:0 40px 32px;overflow:hidden">
+  <div class="hd"><span class="hc">C&amp;A · CABINE 4</span><div class="st"><span class="b"><i></i><i></i><i></i></span><span>ETAPA 3 · RECEBER E PAGAR</span></div><span></span></div>
+  <div style="flex:1;display:flex;gap:48px;min-height:0">
+    <div style="width:620px;flex:none;display:flex;flex-direction:column">
+      <h1 style="margin:8px 0 24px;opacity:{{ aO }};transform:translateY({{ aY }});transition:{{ aT }}">Pagar com C&amp;A Pay</h1>
+      <div class="g" role="radiogroup" aria-label="Parcelamento" style="opacity:{{ bO }};transform:translateY({{ bY }});transition:{{ bT }}">
+        <div class="pc" role="radio" aria-checked="false"><span class="t"><span class="r"></span>1x R$ 279,70</span><span class="v"><span>Sem juros</span><span>R$ 279,70</span></span></div>
+        <div class="pc" role="radio" aria-checked="false"><span class="t"><span class="r"></span>2x R$ 139,85</span><span class="v"><span>Sem juros</span><span>R$ 279,70</span></span></div>
+        <div class="pc" role="radio" aria-checked="false"><span class="t"><span class="r"></span>3x R$ 93,23</span><span class="v"><span>Sem juros</span><span>R$ 279,70</span></span></div>
+        <div class="pc on" role="radio" aria-checked="true"><span class="t"><span class="r"></span>4x R$ 75,23</span><span class="v"><span>Com juros</span><span>R$ 300,92</span></span></div>
+        <div class="pc" role="radio" aria-checked="false"><span class="t"><span class="r"></span>5x R$ 61,06</span><span class="v"><span>Com juros</span><span>R$ 305,30</span></span></div>
+        <div class="pc" role="radio" aria-checked="false"><span class="t"><span class="r"></span>6x R$ 51,61</span><span class="v"><span>Com juros</span><span>R$ 309,66</span></span></div>
+        <div class="pc" role="radio" aria-checked="false"><span class="t"><span class="r"></span>7x R$ 44,88</span><span class="v"><span>Com juros</span><span>R$ 314,16</span></span></div>
+        <div class="pc" role="radio" aria-checked="false"><span class="t"><span class="r"></span>8x R$ 39,83</span><span class="v"><span>Com juros</span><span>R$ 318,64</span></span></div>
+      </div>
+    </div>
+    <div style="flex:1;min-width:0;box-sizing:border-box;display:flex;flex-direction:column;gap:8px;background:#FFFFFF;border:1px solid #E0E0E0;border-radius:28px;padding:28px 32px;box-shadow:0 8px 32px rgba(23,24,26,0.12);opacity:{{ cO }};transform:translateX({{ cX }});transition:{{ cT }}">
+      <span class="lb">SEUS ITENS · 3 PEÇAS</span>
+      <div class="rw"><div class="ph" style="overflow:hidden"><img src="_blob/206e4feaf8be31b3365291f976576e65.webp" alt="" style="width:100%;height:100%;object-fit:contain;display:block"></div><div style="flex:1;display:flex;flex-direction:column"><span class="nm">Camiseta Básica</span><span class="mt">Off-white · Tam. G</span></div><div style="flex:none;display:flex;flex-direction:column;align-items:flex-end"><span class="pr">R$ 79,90</span><span class="mt" style="display:inline-flex;align-items:center;gap:6px"><svg class="mi" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20 2H4c-1 0-2 .9-2 2v3.01c0 .72.43 1.34 1 1.69V20c0 1.1 1.1 2 2 2h14c.9 0 2-.9 2-2V8.7c.57-.35 1-.97 1-1.69V4c0-1.1-1-2-2-2zm-1 18H5V9h14v11zm1-13H4V4h16v3z"/><path d="M9 12h6v2H9z"/></svg>Na caixa</span></div></div>
+      <div class="dv"></div>
+      <div class="rw"><div class="ph" style="overflow:hidden"><img src="_blob/ee53aafc3105a3f0567a1d7aac1616e5.webp" alt="" style="width:100%;height:100%;object-fit:contain;display:block"></div><div style="flex:1;display:flex;flex-direction:column"><span class="nm">Saia Midi Alfaiataria</span><span class="mt">Preto · Tam. M</span></div><div style="flex:none;display:flex;flex-direction:column;align-items:flex-end"><span class="pr">R$ 99,90</span><span class="mt" style="display:inline-flex;align-items:center;gap:6px"><svg class="mi" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20 2H4c-1 0-2 .9-2 2v3.01c0 .72.43 1.34 1 1.69V20c0 1.1 1.1 2 2 2h14c.9 0 2-.9 2-2V8.7c.57-.35 1-.97 1-1.69V4c0-1.1-1-2-2-2zm-1 18H5V9h14v11zm1-13H4V4h16v3z"/><path d="M9 12h6v2H9z"/></svg>Na caixa</span></div></div>
+      <div class="dv"></div>
+      <div class="rw"><div class="ph" style="overflow:hidden"><img src="_blob/92b4577b57840ebf46206aaf3d80f4e9.webp" alt="" style="width:100%;height:100%;object-fit:contain;display:block"></div><div style="flex:1;display:flex;flex-direction:column"><span class="nm">Saia Midi Linho</span><span class="mt">Verde · Tam. M</span></div><div style="flex:none;display:flex;flex-direction:column;align-items:flex-end"><span class="pr">R$ 99,90</span><span class="mt" style="display:inline-flex;align-items:center;gap:6px"><svg class="mi" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="m12 5.69 5 4.5V18h-2v-6H9v6H7v-7.81l5-4.5M12 3 2 12h3v8h6v-6h2v6h6v-8h3L12 3z"/></svg>Em casa</span></div></div>
+      <div style="margin-top:auto;border-top:2px solid #E8E8E8;padding-top:12px;display:flex;flex-direction:column;gap:4px">
+        <div class="sm"><span>Subtotal (3 itens)</span><b>R$ 279,70</b></div>
+        <div class="sm"><span>Frete (3 dias úteis)</span><b>Grátis</b></div>
+        <div class="sm"><span>Descontos</span><b>R$ 0,00</b></div>
+        <div class="sm"><span>Pagamento</span><b>C&amp;A Pay (4x R$ 75,23)</b></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid #E8E8E8;margin-top:4px;padding-top:10px"><span class="lb">TOTAL</span><span style="font-size:var(--fs-3);line-height:var(--lh-3);font-weight:800">R$ 300,92</span></div>
+      </div>
+      <a href="15-ConfirmaRosto.dc.html" onClick="{{ goNext }}" style="margin-top:16px;display:inline-flex;align-items:center;justify-content:center;min-height:64px;border-radius:999px;background:#480CF8;color:#FFFFFF;font-size:var(--fs-2);font-weight:600">Pagar</a>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+  // Reiniciar a jornada: o botão Concluir da 16 grava ca-reset e cada tela volta ao estado inicial.
+  rsInit() {
+    this._s0 = Object.assign({}, this.state || {});
+    try { this._rs = localStorage.getItem('ca-reset') || ''; } catch (e) { this._rs = ''; }
+    this._rsPoll = setInterval(() => this.rsCheck(), 150);
+  }
+  rsCheck() {
+    try {
+      const t = localStorage.getItem('ca-reset') || '';
+      if (t && t !== this._rs) { this._rs = t; this.rsApply(); }
+    } catch (e) {}
+  }
+  rsApply() {
+    [this._t, this._te, this._timers, this._introT, this._ovT].forEach((a) => (a || []).forEach(clearTimeout));
+    if (this._raf) cancelAnimationFrame(this._raf);
+    this._i = false; this._intro = false; this._lastIntro = 0;
+    const n = {};
+    Object.keys(this.state || {}).forEach((k) => { n[k] = (this._s0 && k in this._s0) ? this._s0[k] : undefined; });
+    this.setState(n);
+  }
+  componentDidMount() {
+    this.rsInit();
+    this._poll = setInterval(() => this.check(), 150);
+    this.check();
+  }
+  componentWillUnmount() { clearInterval(this._rsPoll); clearInterval(this._poll); (this._te || []).forEach(clearTimeout); (this._t || []).forEach(clearTimeout); }
+  // No canvas todas as telas ficam montadas: a tela de origem avisa por localStorage e esta escuta o aviso.
+  check() {
+    try {
+      const v = (localStorage.getItem('ca-go') || '').split('|');
+      if (v[0] === '14-Pagamento.dc.html' && Date.now() - (+v[1]) < 6000) { localStorage.removeItem('ca-go'); this.enter(); }
+    } catch (e) {}
+  }
+  // Entrada vinda da 13: título, parcelas e resumo aparecem em sequência.
+  enter() {
+    (this._te || []).forEach(clearTimeout);
+    this.setState({ ent: 0 });
+    this._te = [setTimeout(() => this.setState({ ent: 1 }), 450)];
+  }
+  renderVals() {
+    const go = this.state.ent !== undefined;
+    const ent = this.state.ent === undefined ? 1 : this.state.ent;
+    const T = (d) => !go ? 'none' : ent ? 'opacity .5s ease ' + d + 's,transform .6s cubic-bezier(.22,.8,.3,1) ' + d + 's' : 'none';
+    return {
+      goNext: () => { try { localStorage.setItem('ca-go', '15-ConfirmaRosto.dc.html|' + Date.now()); } catch (e) {} },
+      aO: ent ? '1' : '0', aY: ent ? '0px' : '24px', aT: T(0),
+      bO: ent ? '1' : '0', bY: ent ? '0px' : '24px', bT: T(0.15),
+      cO: ent ? '1' : '0', cX: ent ? '0px' : '48px', cT: T(0.3)
+    };
+  }
+}
+</script>
+</body>
+</html>

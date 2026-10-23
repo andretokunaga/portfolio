@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="robots" content="noindex">
+<title>Peça em uma tela</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFFFF;--surface:#F4F4F4;--surface-2:#E8E8E8;--ink:#0A0A0A;--muted:#5C5C5C;--line-strong:#8A8A8A;--accent:#480CF8;--on-accent:#FFFFFF}
+body{margin:0;font-family:"Inter",system-ui,sans-serif;color:#0A0A0A}
+a{color:inherit;text-decoration:none}
+.sz{display:inline-flex;align-items:center;justify-content:center;width:76px;height:56px;border-radius:999px;box-sizing:border-box;font-size:var(--fs-2);font-weight:700;border:2px solid #8A8A8A;background:#FFFFFF}
+.lb{font-size:var(--fs-1);line-height:var(--lh-1);font-weight:700;letter-spacing:.4px}
+.ph{flex:none;height:100%;display:flex;align-items:center;justify-content:center}
+.sw{width:64px;height:64px;border-radius:20px;background:#E8E8E8;display:flex;align-items:center;justify-content:center;box-sizing:border-box}
+:root{--fs-1:20px;--lh-1:28px;--fs-2:24px;--lh-2:32px;--fs-3:32px;--lh-3:40px;--fs-4:40px;--lh-4:48px;--fs-5:48px;--lh-5:56px;--fs-title-sm:28px;--lh-title-sm:34px}
+.hd{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:88px;flex:none}
+.hd>:first-child{justify-self:start}
+.hd>:last-child{justify-self:end}
+.hc{flex:none;font-size:20px;font-weight:700;letter-spacing:.4px}
+.st{display:flex;align-items:center;gap:12px;font-size:var(--fs-1);font-weight:700;letter-spacing:.4px}
+.st span.b{display:flex;gap:6px}
+.st i{display:block;width:28px;height:8px;border-radius:999px;background:#0A0A0A}
+.st i.o{background:transparent;border:2px solid #8A8A8A;box-sizing:border-box}
+.pb,.po{display:inline-flex;align-items:center;min-height:56px;padding:0 24px;border-radius:999px;box-sizing:border-box;font-size:var(--fs-1);font-weight:700;letter-spacing:.4px;border:2px solid #8A8A8A;background:#FFFFFF}
+.po.on{background:#0A0A0A;color:#FFFFFF;border-color:#0A0A0A}
+
+.mi{flex:none;display:block}
+.pb{gap:8px;padding:0 24px 0 16px}
+.pb.r{padding:0 16px 0 24px}
+.po{gap:8px;padding:0 24px 0 16px}
+.ib{flex:none;display:inline-flex;align-items:center;justify-content:center;width:56px;height:56px;padding:0;border-radius:999px;box-sizing:border-box;border:2px solid #8A8A8A;background:#FFFFFF;color:#0A0A0A;cursor:pointer;font-family:inherit}
+.ib.k{background:#0A0A0A;border-color:#0A0A0A;color:#FFFFFF}
+.ib.g{background:#F4F4F4;border-color:#F4F4F4}
+.ib:disabled{opacity:.35;cursor:default}
+.ck{display:inline-flex;align-items:center;gap:8px}
+@keyframes mispin{to{transform:rotate(360deg)}}
+.spin{animation:mispin 1.2s linear infinite}
+@media (prefers-reduced-motion:reduce){.spin{animation:none}}
+/* estados de interação: foco visível (accent) e pressionado */
+a:focus-visible,button:focus-visible{outline:3px solid #480CF8;outline-offset:2px}
+a,button{transition:transform .12s ease}
+a:active,button:not(.sc):not(:disabled):active{transform:scale(.98)}
+.btn.p:active,a[style*="background:#480CF8"]:active,a[style*="background: #480CF8"]:active,button[style*="background:#480CF8"]:active,button[style*="background: #480CF8"]:active{background:#3A08C6!important}
+@media (prefers-reduced-motion:reduce){a,button{transition:none}a:active,button:active{transform:none}}
+</style>
+</helmet>
+<div style="width:1280px;height:800px;box-sizing:border-box;background:#FFFFFF;display:flex;flex-direction:column;overflow:hidden;position:relative">
+  <div class="hd" style="padding:0 40px"><a href="06-Vitrine.dc.html" class="pb"><svg class="mi" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path></svg>Suas peças</a><div class="st"><span class="b"><i></i><i></i><i class="o"></i></span><span>ETAPA 2 · ESCOLHER</span></div><a href="10-Minicart.dc.html" class="po" onClick="{{ goDrawer }}"><svg class="mi" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2zm6 16H6V8h2v2c0 .55.45 1 1 1s1-.45 1-1V8h4v2c0 .55.45 1 1 1s1-.45 1-1V8h2v12z"/></svg>PEDIDO · 0</a></div>
+  <div style="flex:1;display:flex;overflow:hidden;min-height:0;background:#E8E8E8"><div style="flex:none;display:flex;width:1680px;height:100%;will-change:transform;transform:translateX({{ gX }});transition:{{ gT }}"><div class="ph" style="width:560px;background:#E8E8E8;overflow:hidden"><img draggable="false" src="_blob/206e4feaf8be31b3365291f976576e65.webp" alt="" style="width:493px;height:638px;box-sizing:border-box;padding:17px 6px;object-fit:contain;display:block;filter:drop-shadow(0 18px 16px rgba(23,24,26,.20))"></div><div class="ph" style="width:560px;background:#E8E8E8;overflow:hidden"><img draggable="false" src="_blob/91f524420b0d9a30f3d25f301afe3b40.webp" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div><div class="ph" style="width:560px;background:#E8E8E8;overflow:hidden"><img draggable="false" src="_blob/e8719d4b7eaea669fe7b8e7b1aa6053c.webp" alt="" style="width:100%;height:100%;object-fit:cover;display:block;"></div></div></div>
+  <div role="group" aria-label="Fotos da peça: arraste para o lado" onPointerDown="{{ gDown }}" onPointerMove="{{ gMove }}" onPointerUp="{{ gUp }}" onPointerCancel="{{ gUp }}" style="position:absolute;left:0;top:88px;width:1280px;height:712px;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:{{ gCursor }}"></div>
+  <div style="position:absolute;left:24px;bottom:24px;display:inline-flex;align-items:center;gap:8px;min-height:64px;padding:0 24px 0 4px;border-radius:999px;background:#FFFFFF;box-sizing:border-box;font-size:var(--fs-1);font-weight:700;letter-spacing:.4px;box-shadow:0 8px 32px rgba(23,24,26,0.12)"><span style="display:inline-flex;align-items:center;gap:8px"><button type="button" class="ib g" aria-label="Foto anterior" onClick="{{ gPrev }}" disabled="{{ gAtStart }}"><svg class="mi" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12l4.58-4.59z"></path></svg></button><span>{{ gpN }} / {{ total }}</span><button type="button" class="ib g" aria-label="Próxima foto" onClick="{{ gNext }}" disabled="{{ gAtEnd }}"><svg class="mi" width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M10 6 8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6-6-6z"></path></svg></button></span></div>
+  <div style="position:absolute;left:700px;top:122px;width:480px;height:644px;box-sizing:border-box;background:#FFFFFF;border:1px solid #E0E0E0;border-radius:28px;padding:28px 32px;display:flex;flex-direction:column;gap:16px;box-shadow:0 8px 32px rgba(23,24,26,0.12)">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;white-space:nowrap"><span style="font-size:var(--fs-2);line-height:var(--lh-2);font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis">Camiseta Básica</span><span style="flex:none;font-size:var(--fs-2);line-height:var(--lh-2);font-weight:700;font-variant-numeric:tabular-nums">R$ 79,90</span></div>
+    <div style="display:flex;align-items:center;gap:8px;font-size:var(--fs-1);line-height:var(--lh-1);font-weight:500;color:#5C5C5C"><svg class="mi" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg><b style="color:#0A0A0A">4,6</b> de 5 · 128 avaliações no site</div>
+    <p style="margin:0;font-size:var(--fs-1);line-height:var(--lh-1);font-weight:500;color:#5C5C5C">Tecido leve, caimento solto e gola redonda.</p>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:-8px"><span class="lb">COR · OFF-WHITE</span></div>
+    <div style="display:flex;gap:12px"><div class="sw" aria-label="Off-white" style="position:relative;overflow:hidden;outline:3px solid #0A0A0A;outline-offset:2px;"><img src="_blob/e19321335e95fa0e2e69e2a6e0355603.webp" alt="" style="position:absolute;left:50%;top:50%;width:260%;height:auto;transform:translate(-50%,-38%)"><span style="position:relative;z-index:1;width:32px;height:32px;border-radius:999px;background:#0A0A0A;color:#FFFFFF;display:flex;align-items:center;justify-content:center"><svg class="mi" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"></path></svg></span></div><a href="09-CorSemEstoque.dc.html" class="sw" aria-label="Cinza-chumbo" style="position:relative;overflow:hidden;"><img src="_blob/620bdf45e901b21c282140045896ea44.webp" alt="" style="position:absolute;left:50%;top:50%;width:260%;height:auto;transform:translate(-50%,-38%)"></a><a href="09-CorSemEstoque.dc.html" class="sw" aria-label="Preto" style="position:relative;overflow:hidden;"><img src="_blob/8e53e5c596d0042280cad2774010e4cf.webp" alt="" style="position:absolute;left:50%;top:50%;width:260%;height:auto;transform:translate(-50%,-38%)"></a></div>
+    <div style="display:flex;justify-content:space-between;margin-top:12px;margin-bottom:-8px"><span class="lb">TAMANHO</span></div>
+    <div style="display:flex;gap:8px"><a href="08-Tamanho.dc.html" class="sz" style="">P</a><span class="sz" style="background:#0A0A0A;color:#FFFFFF;border-color:#0A0A0A">M</span><a href="08-Tamanho.dc.html" class="sz" style="">G</a><a href="08-Tamanho.dc.html" class="sz" style="">GG</a></div>
+    <div style="display:flex;align-items:center;gap:12px;color:#5C5C5C"><svg class="mi" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 10H3V8h2v4h2V8h2v4h2V8h2v4h2V8h2v4h2V8h2v8z"></path></svg><span style="font-size:var(--fs-1);line-height:var(--lh-1);font-weight:500">Tamanho recomendado: G</span></div>
+    <div style="margin-top:auto;display:flex;flex-direction:column;gap:12px"><div style="display:flex;align-items:center;gap:16px;padding-top:16px;border-top:1px solid #E0E0E0"><span style="flex:none;width:48px;height:48px;border-radius:999px;background:#0A0A0A;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:var(--fs-2);font-weight:800">M</span><div style="display:flex;flex-direction:column;min-width:0"><span style="font-size:var(--fs-1);line-height:var(--lh-1);font-weight:700">Tamanho que você trouxe</span></div></div></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":800}}'>
+class Component extends DCLogic {
+  componentDidMount() { this.rsInit(); }
+  componentWillUnmount() { clearInterval(this._rsPoll); }
+  // Reiniciar a jornada: o botão Concluir da 16 grava ca-reset e cada tela volta ao estado inicial.
+  rsInit() {
+    this._s0 = Object.assign({}, this.state || {});
+    try { this._rs = localStorage.getItem('ca-reset') || ''; } catch (e) { this._rs = ''; }
+    this._rsPoll = setInterval(() => this.rsCheck(), 150);
+  }
+  rsCheck() {
+    try {
+      const t = localStorage.getItem('ca-reset') || '';
+      if (t && t !== this._rs) { this._rs = t; this.rsApply(); }
+    } catch (e) {}
+  }
+  rsApply() {
+    [this._t, this._te, this._timers, this._introT, this._ovT].forEach((a) => (a || []).forEach(clearTimeout));
+    if (this._raf) cancelAnimationFrame(this._raf);
+    this._i = false; this._intro = false; this._lastIntro = 0;
+    const n = {};
+    Object.keys(this.state || {}).forEach((k) => { n[k] = (this._s0 && k in this._s0) ? this._s0[k] : undefined; });
+    this.setState(n);
+  }
+  state = { gp: 0, gdx: 0, gdrag: false };
+  // Galeria de fotos da peça: posição atual (gp) e arrasto em andamento (gdx), em px. Mesmo comportamento da 06.
+  renderVals() {
+    const total = 3;
+    const gp = Math.max(0, Math.min(total - 1, this.state.gp || 0));
+    const gdrag = !!this.state.gdrag;
+    return Object.assign(this.baseVals(), {
+      gX: (-gp * 560 + (this.state.gdx || 0)) + 'px',
+      gT: gdrag ? 'none' : 'transform .45s cubic-bezier(.22,.8,.3,1)',
+      gCursor: gdrag ? 'grabbing' : 'grab',
+      gpN: gp + 1,
+      total,
+      gAtStart: gp <= 0,
+      gAtEnd: gp >= total - 1,
+      gPrev: () => this.setState({ gp: Math.max(0, gp - 1), gdx: 0 }),
+      gNext: () => this.setState({ gp: Math.min(total - 1, gp + 1), gdx: 0 }),
+      gDown: (e) => {
+        this._gx0 = e.clientX; this._gt0 = performance.now(); this._gd = true;
+        try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {}
+        this.setState({ gdrag: true, gdx: 0 });
+      },
+      gMove: (e) => {
+        if (!this._gd) return;
+        let dx = e.clientX - this._gx0;
+        const g = this.state.gp || 0;
+        if ((g <= 0 && dx > 0) || (g >= total - 1 && dx < 0)) dx = Math.max(-90, Math.min(90, dx * 0.3));
+        this.setState({ gdx: dx });
+      },
+      gUp: (e) => {
+        if (!this._gd) return;
+        this._gd = false;
+        const dx = e.clientX - this._gx0;
+        const v = dx / Math.max(1, performance.now() - this._gt0);
+        const g = this.state.gp || 0;
+        let ng = g;
+        if (dx < -80 || (v < -0.5 && dx < -20)) ng = g + 1;
+        else if (dx > 80 || (v > 0.5 && dx > 20)) ng = g - 1;
+        ng = Math.max(0, Math.min(total - 1, ng));
+        this.setState({ gp: ng, gdx: 0, gdrag: false });
+      }
+    });
+  }
+  baseVals() {
+    return { goDrawer: () => { try { localStorage.setItem('ca-drawer', '10-Minicart.dc.html|' + Date.now()); } catch (e) {} } };
+  }
+}
+</script>
+</body>
+</html>

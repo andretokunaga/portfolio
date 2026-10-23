@@ -1,0 +1,1316 @@
+<!doctype html>
+<meta charset="utf-8"><meta name="robots" content="noindex"><style data-dc-design-system-vars>@layer{:root{--ink-000:#000000;--ink-100:#111111;--ink-200:#1e1e1e;--ink-300:#3c3c3c;--ink-400:#4d4d4d;--accent:#1546d4;--on-accent:#ffffff;--surface-000:#ffffff;--surface-050:#f7f7f7;--surface-100:#ededed;--surface-200:#dcdcdc;--border-strong:#8a8a8a;--accent-50:#ecf1fe;--accent-100:#d6dffa;--accent-200:#b5c4f2;--accent-300:#90a6ea;--accent-400:#5074e2;--accent-600:#103ab7;--accent-700:#0f3095;--accent-800:#0e2772;--accent-900:#0c1b45;--success:#157548;--success-tonal:#f0f9f5;--danger:#bb281b;--danger-tonal:#faf0ef;--warning:#8d5c07;--warning-tonal:#fbf6ef;--chart-1:#0096c6;--chart-2:#7a0af3;--chart-3:#ff0080;--chart-4:#c07d00;--chart-5:#da3afb;--chart-6:#009d88;--space-4:4px;--space-8:8px;--space-12:12px;--space-16:16px;--space-24:24px;--space-32:32px;--space-48:48px;--space-80:80px;--radius-sm:12px;--radius-lg:16px;--radius-pill:999px;--radius-full:50%;--radius-bar:6px;--chart-fill-top:0.88;--chart-fill-bottom:0.08;--icon-1:14px;--icon-2:16px;--icon-3:20px;--icon-4:24px;--icon-5:30px;--icon-6:44px;--font-sans:'Manrope', sans-serif;--text-display:800 44px/1.1 var(--font-sans);--text-heading:700 30px/1.15 var(--font-sans);--text-subheading:600 20px/1.3 var(--font-sans);--text-body:400 16px/1.55 var(--font-sans);--text-caption:600 13px/1.3 var(--font-sans);--text-numeric-lg:700 48px/1.1 var(--font-sans);--text-numeric-delta:600 18px/1.2 var(--font-sans);--text-h1:700 30px/1.15 var(--font-sans);--text-h2:700 24px/1.2 var(--font-sans);--text-h3:600 20px/1.3 var(--font-sans);--text-h4:600 17px/1.4 var(--font-sans);--text-paragraph:400 16px/1.55 var(--font-sans);--text-tagline:500 14px/1.4 var(--font-sans);}}</style>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Estrutura — Header + Menu + Footer — COSTDRIVERS</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  body{margin:0;}
+  :root{
+    --ink-000:#000000; --ink-100:#111111; --ink-200:#1E1E1E; --ink-300:#3C3C3C; --ink-400:#4D4D4D;
+    --accent:#1546D4; --on-accent:#FFFFFF; --accent-50:#ECF1FE; --accent-text:#1546D4;
+    --surface-000:#FFFFFF; --surface-050:#F7F7F7; --surface-100:#EDEDED; --surface-200:#DCDCDC;
+    --success:#27760F; --success-tonal:#E9FBE5; --danger:#BB281B; --danger-tonal:#FAF0EF;
+    --warning:#8D5C07; --warning-tonal:#FBF6EF;
+    --chart-1:#0096C6; --chart-2:#7A0AF3; --chart-3:#FF0080; --chart-4:#C07D00;
+    --border-strong:#8A8A8A;
+    --radius-sm:12px; --radius-lg:16px; --radius-full:50%; --radius-pill:999px;
+  }
+  /* Modo escuro — mesmo método OKLCH do claro (hue/chroma mantidos por
+     token, luminância recalculada contra a nova superfície escura), com os
+     4 chart-N validados contra o novo fundo pelo script da skill de dataviz
+     (todos passam; --chart-2 fica com contraste ~2,5:1 sozinho contra o
+     card, coberto pela legenda/rótulo diretos que já existem em toda
+     leitura desse gráfico). Ainda não formalizado em tokens.json.
+     --accent-text: o --accent original (#3F71E9) serve bem como FUNDO sólido
+     (botão + texto branco, ~4,4:1) mas não como TEXTO solto sobre um card
+     escuro (~3,7:1) — clarear o accent para resolver um lado piora o outro.
+     Por isso --accent-text é um token à parte, só para essa 2ª função (rótulo
+     do item ativo do menu, chips, abas ativas, bolhas do chat, preset ativo
+     do calendário): mesmo hue/chroma, luminância maior, ≥4,8:1 em qualquer
+     superfície onde aparece como texto. --accent continua o token de fundo/
+     borda/ícone sólido. --ink-400 em legendas pequenas ainda fica ~4,3:1,
+     mesma lacuna já sinalizada no teste anterior. Escopo: só esta tela. */
+  #app-shell[data-theme="dark"]{
+    --ink-000:#FFFFFF; --ink-100:#F2F3F4; --ink-200:#D4D6D9; --ink-300:#A3A5A8; --ink-400:#808285;
+    --accent:#3F71E9; --on-accent:#FFFFFF; --accent-50:#040C22; --accent-text:#5186FF;
+    --surface-000:#1E1F24; --surface-050:#0E0F12; --surface-100:#282A2E; --surface-200:#36383B;
+    --success:#459232; --success-tonal:#021200; --danger:#E55241; --danger-tonal:#1C0000;
+    --warning:#AB772D; --warning-tonal:#1A0800;
+    --border-strong:#5F6164;
+  }
+  input, select, button { font-family:'Manrope',sans-serif; }
+  input::placeholder { color:var(--ink-400); }
+
+  /* Campos preenchidos, sem contorno pesado — --border-strong destoava do
+     resto da tela, que só usa hairlines claras (--surface-200) em cards e
+     divisores. Mantido no token só até decidirmos se vale formalizar esse
+     padrão preenchido no Design System real. */
+  .f-field{
+    width:100%; height:36px; box-sizing:border-box; display:block;
+    background:var(--surface-100); border:1px solid transparent; border-radius:var(--radius-sm);
+    padding:0 12px; font-size:13px; color:var(--ink-200);
+    transition:background-color .12s ease, border-color .12s ease, box-shadow .12s ease;
+  }
+  .f-field:hover{ background:var(--surface-200); }
+  .f-field:focus{ outline:none; background:var(--surface-000); border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-50); }
+  .f-field.f-sm{ height:32px; font-size:12px; }
+  select.f-field{ appearance:none; -webkit-appearance:none; -moz-appearance:none; padding-right:30px; cursor:pointer; }
+</style>
+</helmet>
+
+<div id="app-shell" data-theme="{{theme}}" style="width:1440px;height:1120px;box-sizing:border-box;display:flex;flex-direction:column;background:var(--surface-050);font-family:'Manrope',sans-serif;color:var(--ink-300);overflow:hidden;transition:background-color .15s ease;">
+
+  <div style="flex:1 1 auto;display:flex;min-height:0;">
+
+    <!-- SIDEBAR -->
+    <div style="width:280px;flex:0 0 280px;background:var(--surface-000);border-right:1px solid var(--surface-200);display:flex;flex-direction:column;box-sizing:border-box;">
+
+      <!-- marca / workspace -->
+      <div style="height:56px;flex:0 0 56px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid var(--surface-200);box-sizing:border-box;">
+        <div style="display:flex;align-items:center;gap:8px;min-width:0;">
+          <div style="width:28px;height:28px;flex:0 0 28px;border-radius:var(--radius-sm);background:var(--accent);display:flex;align-items:center;justify-content:center;">
+            <span style="color:var(--on-accent);font-size:13px;font-weight:800;">C</span>
+          </div>
+          <span style="font-size:14px;font-weight:700;color:var(--ink-100);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">COSTDRIVERS</span>
+        </div>
+        <div title="Recolher menu" style="width:24px;height:24px;flex:0 0 24px;display:flex;align-items:center;justify-content:center;color:var(--ink-400);">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -12"></path><path d="M9 4v16"></path><path d="M15 10l-2 2l2 2"></path></svg>
+        </div>
+      </div>
+
+      <!-- busca -->
+      <div style="padding:12px 12px 4px;box-sizing:border-box;">
+        <div style="display:flex;align-items:center;gap:8px;background:var(--surface-050);border-radius:var(--radius-sm);padding:7px 10px;box-sizing:border-box;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ink-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path d="M21 21l-6 -6"></path></svg>
+          <span style="font-size:12px;color:var(--ink-400);">Buscar…</span>
+        </div>
+      </div>
+
+      <!-- navegacao -->
+      <div style="flex:1 1 auto;min-height:0;overflow-y:auto;padding:8px 12px 12px;box-sizing:border-box;display:flex;flex-direction:column;gap:2px;">
+
+        <!-- Indicadores (ativo) -->
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--radius-sm);background:var(--accent-50);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19l16 0"></path><path d="M4 15l4 -6l4 2l4 -5l4 4"></path></svg>
+          <span style="font-size:14px;font-weight:600;color:var(--accent-text);">Indicadores</span>
+        </div>
+
+        <!-- Cost Models -->
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--radius-sm);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2l0 -14"></path><path d="M8 8a1 1 0 0 1 1 -1h6a1 1 0 0 1 1 1v1a1 1 0 0 1 -1 1h-6a1 1 0 0 1 -1 -1l0 -1"></path><path d="M8 14l0 .01"></path><path d="M12 14l0 .01"></path><path d="M16 14l0 .01"></path><path d="M8 17l0 .01"></path><path d="M12 17l0 .01"></path><path d="M16 17l0 .01"></path></svg>
+          <span style="font-size:14px;font-weight:500;color:var(--ink-300);">Cost Models</span>
+        </div>
+
+        <!-- Contratos -->
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--radius-sm);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2"></path><path d="M9 9l1 0"></path><path d="M9 13l6 0"></path><path d="M9 17l6 0"></path></svg>
+          <span style="font-size:14px;font-weight:500;color:var(--ink-300);">Contratos</span>
+        </div>
+
+        <!-- Relatorios -->
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--radius-sm);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 5h-2a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h5.697"></path><path d="M18 14v4h4"></path><path d="M18 11v-4a2 2 0 0 0 -2 -2h-2"></path><path d="M8 5a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2a2 2 0 0 1 -2 2h-2a2 2 0 0 1 -2 -2"></path><path d="M14 18a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path><path d="M8 11h4"></path><path d="M8 15h3"></path></svg>
+          <span style="font-size:14px;font-weight:500;color:var(--ink-300);">Relatórios</span>
+        </div>
+
+        <!-- Favoritos (expandido) -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:8px 10px;border-radius:var(--radius-sm);margin-top:6px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873l-6.158 -3.245"></path></svg>
+            <span style="font-size:14px;font-weight:500;color:var(--ink-300);">Favoritos</span>
+          </div>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6l6 -6"></path></svg>
+        </div>
+
+        <!-- sub-segmentacao: Indicadores -->
+        <div style="margin-top:6px;">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-400);padding:2px 10px;">Indicadores</div>
+          <sc-for list="{{favIndicadores}}" as="item" hint-placeholder-count="2">
+            <div style="padding:6px 10px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+              <div style="display:flex;align-items:center;gap:6px;min-width:0;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--ink-400)" style="flex:0 0 12px;"><path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"></path></svg>
+                <span style="font-size:12.5px;font-weight:500;color:var(--ink-300);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{item.name}}</span>
+              </div>
+              <span style="flex:0 0 auto;font-size:10px;font-weight:700;font-variant-numeric:tabular-nums;padding:2px 8px;border-radius:var(--radius-pill);background:{{item.bg}};color:{{item.txt}};">YTD {{item.value}}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <!-- sub-segmentacao: Cost Models -->
+        <div style="margin-top:4px;">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-400);padding:2px 10px;">Cost Models</div>
+          <sc-for list="{{favCostModels}}" as="item" hint-placeholder-count="2">
+            <div style="padding:6px 10px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+              <div style="display:flex;align-items:center;gap:6px;min-width:0;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--ink-400)" style="flex:0 0 12px;"><path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"></path></svg>
+                <span style="font-size:12.5px;font-weight:500;color:var(--ink-300);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{item.name}}</span>
+              </div>
+              <span style="flex:0 0 auto;font-size:10px;font-weight:700;font-variant-numeric:tabular-nums;padding:2px 8px;border-radius:var(--radius-pill);background:{{item.bg}};color:{{item.txt}};">YTD {{item.value}}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <!-- sub-segmentacao: Contratos -->
+        <div style="margin-top:8px;">
+          <div style="font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-400);padding:2px 10px;">Contratos</div>
+          <sc-for list="{{favContratos}}" as="item" hint-placeholder-count="2">
+            <div style="padding:6px 10px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+              <div style="display:flex;align-items:center;gap:6px;min-width:0;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="var(--ink-400)" style="flex:0 0 12px;"><path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z"></path></svg>
+                <span style="font-size:12.5px;font-weight:500;color:var(--ink-300);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{item.name}}</span>
+              </div>
+              <span style="flex:0 0 auto;font-size:10px;font-weight:700;font-variant-numeric:tabular-nums;padding:2px 8px;border-radius:var(--radius-pill);background:{{item.bg}};color:{{item.txt}};">{{item.value}}</span>
+            </div>
+          </sc-for>
+        </div>
+
+      </div>
+
+      <!-- usuario + Configuracoes (fixo no rodape do menu) -->
+      <div style="flex:0 0 auto;border-top:1px solid var(--surface-200);box-sizing:border-box;">
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 14px 6px;">
+          <div style="width:26px;height:26px;flex:0 0 26px;border-radius:var(--radius-full);background:var(--accent);display:flex;align-items:center;justify-content:center;">
+            <span style="font-size:11px;font-weight:700;color:var(--on-accent);">AT</span>
+          </div>
+          <span style="font-size:13px;font-weight:600;color:var(--ink-200);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">André Tokunaga</span>
+        </div>
+        <div style="padding:4px 12px 14px;box-sizing:border-box;">
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:var(--radius-sm);">
+            <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"></path></svg>
+              <span style="font-size:14px;font-weight:500;color:var(--ink-300);white-space:nowrap;">Modo escuro</span>
+            </div>
+            <button type="button" onClick="{{toggleTheme}}" role="switch" aria-checked="{{isDark}}" aria-label="Alternar para modo escuro" style="flex:0 0 auto;width:36px;height:20px;border-radius:var(--radius-pill);border:none;padding:2px;box-sizing:border-box;cursor:pointer;{{themeSwitchTrackStyle}}">
+              <span style="display:block;width:16px;height:16px;border-radius:var(--radius-full);background:#FFFFFF;transition:transform .15s ease;{{themeSwitchThumbStyle}}"></span>
+            </button>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--radius-sm);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--ink-300)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065"></path><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0"></path></svg>
+            <span style="font-size:14px;font-weight:500;color:var(--ink-300);">Configurações</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLUNA PRINCIPAL -->
+    <div style="flex:1 1 auto;display:flex;flex-direction:column;min-width:0;">
+
+      <!-- MIOLO: COMPARAÇÃO DE INDICADORES (chart-first; repensado do zero a partir
+           da necessidade real — comprador quer acompanhar variação/projeção pra
+           decidir entre renegociar contrato ou segurar estoque — e não a partir
+           das telas originais, que eram moldadas por limitação técnica da época) -->
+      <div style="flex:1 1 auto;min-height:0;display:flex;flex-direction:column;background:var(--surface-050);overflow:hidden;">
+
+        <!-- topo: titulo + CTAs -->
+        <div style="flex:0 0 auto;padding:20px 24px 0;box-sizing:border-box;display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
+          <div>
+            <h1 style="margin:0;font-size:20px;font-weight:800;color:var(--ink-100);">Comparação de indicadores</h1>
+            <span style="font-size:13px;color:var(--ink-400);">Acompanhe variação e projeção para decidir entre renegociar contrato ou segurar estoque.</span>
+          </div>
+          <div style="flex:0 0 auto;display:flex;gap:8px;">
+            <button type="button" style="height:36px;padding:0 16px;border-radius:var(--radius-sm);border:1px solid var(--surface-200);background:var(--surface-000);color:var(--ink-200);font-size:13px;font-weight:700;cursor:pointer;{{ctaStyleExtra}}">Gerar relatório</button>
+            <button type="button" style="height:36px;padding:0 16px;border-radius:var(--radius-sm);border:none;background:var(--accent);color:var(--on-accent);font-size:13px;font-weight:700;cursor:pointer;{{ctaStyleExtra}}">Criar Cost Model</button>
+          </div>
+        </div>
+
+        <!-- faixa de selecionados + adicionar (a lista completa só aparece sob demanda) -->
+        <div style="flex:0 0 auto;padding:16px 24px 0;box-sizing:border-box;position:relative;">
+          <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+
+            <sc-for list="{{selectedChips}}" as="chip" hint-placeholder-count="3">
+              <span style="display:inline-flex;align-items:center;gap:6px;padding:4px 8px 4px 10px;border-radius:var(--radius-pill);background:var(--accent-50);color:var(--accent-text);font-size:12px;font-weight:700;">
+                <svg width="28" height="14" viewBox="0 0 64 24"><path d="{{chip.sparkPath}}" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                {{chip.nome}}
+                <button type="button" aria-label="Remover {{chip.nome}} da comparação" onClick="{{chip.toggle}}" style="width:16px;height:16px;border:none;background:none;color:var(--accent-text);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg>
+                </button>
+              </span>
+            </sc-for>
+
+            <sc-if value="{{canAdd}}" hint-placeholder-val="{{true}}">
+              <button type="button" onClick="{{toggleCatalog}}" aria-expanded="{{catalogOpen}}" style="display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px 0 8px;border-radius:var(--radius-pill);border:1px dashed var(--surface-200);background:none;color:var(--ink-300);font-size:12px;font-weight:700;cursor:pointer;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l0 14"></path><path d="M5 12l14 0"></path></svg>
+                Adicionar indicador
+              </button>
+            </sc-if>
+            <sc-if value="{{atLimit}}" hint-placeholder-val="{{false}}">
+              <span style="font-size:11px;color:var(--ink-400);padding:6px 2px;">Limite de 4 indicadores por comparação</span>
+            </sc-if>
+
+          </div>
+
+          <!-- popover: catálogo completo, aberto só sob demanda -->
+          <sc-if value="{{catalogOpen}}" hint-placeholder-val="{{false}}">
+            <div style="position:absolute;top:100%;left:0;margin-top:8px;width:580px;max-height:440px;background:var(--surface-000);border:1px solid var(--surface-200);border-radius:var(--radius-lg);box-shadow:0 12px 32px rgba(17,17,17,0.16);z-index:40;display:flex;flex-direction:column;overflow:hidden;">
+              <div style="flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--surface-100);">
+                <span style="font-size:13px;font-weight:800;color:var(--ink-100);">Adicionar indicador · {{selectedCount}} de 4 selecionados</span>
+                <button type="button" aria-label="Fechar" onClick="{{toggleCatalog}}" style="width:26px;height:26px;border:none;background:none;color:var(--ink-400);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg>
+                </button>
+              </div>
+              <div style="flex:0 0 auto;padding:10px 14px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--surface-100);">
+                <div style="position:relative;">
+                  <label for="busca-indicadores" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Buscar indicadores</label>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--ink-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);pointer-events:none;"><path d="M3 10a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path><path d="M21 21l-6 -6"></path></svg>
+                  <input id="busca-indicadores" type="search" placeholder="Buscar por nome, país ou fonte" class="f-field f-sm" style="padding-left:34px;">
+                </div>
+                <div style="display:flex;gap:8px;">
+                  <div style="position:relative;flex:1 1 0;">
+                    <select aria-label="Filtrar por país" class="f-field f-select f-sm">
+                      <option>País</option>
+                      <option>Brasil</option>
+                      <option>Colômbia</option>
+                    </select>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--ink-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none;"><path d="M6 9l6 6l6 -6"></path></svg>
+                  </div>
+                  <div style="position:relative;flex:1 1 0;">
+                    <select aria-label="Filtrar por tipo" class="f-field f-select f-sm">
+                      <option>Tipo</option>
+                      <option>Índice</option>
+                      <option>Preço</option>
+                    </select>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--ink-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none;"><path d="M6 9l6 6l6 -6"></path></svg>
+                  </div>
+                  <div style="position:relative;flex:1 1 0;">
+                    <select aria-label="Filtrar por fonte" class="f-field f-select f-sm">
+                      <option>Fonte</option>
+                      <option>FGV</option>
+                      <option>IBGE</option>
+                      <option>ANP</option>
+                      <option>CEPEA</option>
+                    </select>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--ink-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none;"><path d="M6 9l6 6l6 -6"></path></svg>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:1 1 auto;min-height:0;overflow-y:auto;padding:6px;">
+                <sc-for list="{{catalogo}}" as="item" hint-placeholder-count="10">
+                  <div style="display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:var(--radius-sm);">
+                    <button type="button" aria-label="{{item.actionLabel}}" onClick="{{item.toggle}}" style="flex:0 0 auto;width:20px;height:20px;border-radius:6px;border:1px solid {{item.actionBorder}};background:{{item.actionBg}};display:flex;align-items:center;justify-content:center;color:{{item.actionColor}};cursor:pointer;padding:0;opacity:{{item.actionOpacity}};">
+                      <sc-if value="{{item.selected}}" hint-placeholder-val="{{false}}">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>
+                      </sc-if>
+                    </button>
+                    <svg width="40" height="20" viewBox="0 0 64 24" style="flex:0 0 40px;"><path d="{{item.sparkPath}}" fill="none" stroke="{{item.sparkColor}}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    <div style="flex:2 1 0;min-width:0;">
+                      <div style="font-size:13px;font-weight:600;color:var(--ink-100);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{item.nome}}</div>
+                      <div style="font-size:11px;color:var(--ink-400);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{item.subLabel}}</div>
+                    </div>
+                    <div style="flex:1 1 0;">
+                      <span style="display:inline-block;font-size:10.5px;font-weight:700;padding:2px 7px;border-radius:var(--radius-sm);background:var(--surface-100);color:var(--ink-300);">{{item.tipoLabel}}</span>
+                    </div>
+                    <div style="flex:1 1 0;text-align:right;font-size:12px;font-weight:700;color:{{item.varColor}};">{{item.varLabel}}</div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <sc-if value="{{chartVisible}}" hint-placeholder-val="{{true}}">
+          <!-- toolbar global: período + moeda (aplicam às 3 abas abaixo) -->
+          <div style="flex:0 0 auto;padding:16px 24px 0;box-sizing:border-box;display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px;">
+            <div style="position:relative;">
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-400);margin-bottom:5px;">Período</div>
+              <button type="button" onClick="{{togglePeriodo}}" aria-expanded="{{periodoOpen}}" aria-haspopup="true" aria-label="Selecionar período" class="f-field f-sm" style="width:236px;display:flex;align-items:center;gap:8px;cursor:pointer;text-align:left;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--ink-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;"><path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"></path><path d="M16 3v4"></path><path d="M8 3v4"></path><path d="M4 11h16"></path></svg>
+                <span style="flex:1 1 auto;font-size:12px;color:var(--ink-200);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{periodoLabel}}</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--ink-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:0 0 auto;"><path d="M6 9l6 6l6 -6"></path></svg>
+              </button>
+
+              <!-- popover estilo Google Analytics: presets à esquerda, calendário de 2 meses à direita -->
+              <sc-if value="{{periodoOpen}}" hint-placeholder-val="{{false}}">
+                <div style="position:absolute;top:100%;left:0;margin-top:8px;background:var(--surface-000);border:1px solid var(--surface-200);border-radius:var(--radius-lg);box-shadow:0 12px 32px rgba(17,17,17,0.16);z-index:50;display:flex;overflow:hidden;">
+
+                  <div style="flex:0 0 188px;border-right:1px solid var(--surface-100);padding:8px;display:flex;flex-direction:column;gap:1px;max-height:372px;overflow-y:auto;">
+                    <sc-for list="{{periodoPresetItems}}" as="p" hint-placeholder-count="12">
+                      <button type="button" onClick="{{p.onClick}}" style="text-align:left;padding:8px 10px;border-radius:var(--radius-sm);border:none;font-size:12.5px;cursor:pointer;{{p.itemStyle}}">{{p.label}}</button>
+                    </sc-for>
+                  </div>
+
+                  <div style="flex:1 1 auto;padding:14px 16px;display:flex;flex-direction:column;gap:12px;min-width:536px;box-sizing:border-box;">
+                    <div style="display:flex;gap:10px;">
+                      <div style="flex:1 1 0;">
+                        <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-400);margin-bottom:4px;">Data de início</div>
+                        <div class="f-field f-sm" style="display:flex;align-items:center;font-size:12.5px;color:var(--ink-200);box-sizing:border-box;">{{periodoDraftDeLabel}}</div>
+                      </div>
+                      <div style="flex:1 1 0;">
+                        <div style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-400);margin-bottom:4px;">Data de término</div>
+                        <div class="f-field f-sm" style="display:flex;align-items:center;font-size:12.5px;color:var(--ink-200);box-sizing:border-box;">{{periodoDraftAteLabel}}</div>
+                      </div>
+                    </div>
+
+                    <div style="display:flex;gap:24px;">
+                      <div style="flex:1 1 0;">
+                        <div style="text-align:center;font-size:12px;font-weight:700;color:var(--ink-200);margin-bottom:8px;">{{calMonthALabel}}</div>
+                        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;">
+                          <sc-for list="{{diasSemanaLabels}}" as="dw" hint-placeholder-count="7">
+                            <div style="text-align:center;font-size:10px;font-weight:700;color:var(--ink-400);padding-bottom:2px;">{{dw}}</div>
+                          </sc-for>
+                          <sc-for list="{{calMonthACells}}" as="c" hint-placeholder-count="35">
+                            <sc-if value="{{c.blank}}" hint-placeholder-val="{{false}}">
+                              <div></div>
+                            </sc-if>
+                            <sc-if value="{{c.filled}}" hint-placeholder-val="{{true}}">
+                              <button type="button" onClick="{{c.onClick}}" style="width:100%;aspect-ratio:1;padding:0;margin:0;border:none;border-radius:var(--radius-full);font-size:11px;font-family:'Manrope',sans-serif;display:flex;align-items:center;justify-content:center;cursor:pointer;{{c.style}}">{{c.day}}</button>
+                            </sc-if>
+                          </sc-for>
+                        </div>
+                      </div>
+                      <div style="flex:1 1 0;">
+                        <div style="text-align:center;font-size:12px;font-weight:700;color:var(--ink-200);margin-bottom:8px;">{{calMonthBLabel}}</div>
+                        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;">
+                          <sc-for list="{{diasSemanaLabels}}" as="dw" hint-placeholder-count="7">
+                            <div style="text-align:center;font-size:10px;font-weight:700;color:var(--ink-400);padding-bottom:2px;">{{dw}}</div>
+                          </sc-for>
+                          <sc-for list="{{calMonthBCells}}" as="c" hint-placeholder-count="35">
+                            <sc-if value="{{c.blank}}" hint-placeholder-val="{{false}}">
+                              <div></div>
+                            </sc-if>
+                            <sc-if value="{{c.filled}}" hint-placeholder-val="{{true}}">
+                              <button type="button" onClick="{{c.onClick}}" style="width:100%;aspect-ratio:1;padding:0;margin:0;border:none;border-radius:var(--radius-full);font-size:11px;font-family:'Manrope',sans-serif;display:flex;align-items:center;justify-content:center;cursor:pointer;{{c.style}}">{{c.day}}</button>
+                            </sc-if>
+                          </sc-for>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style="display:flex;justify-content:flex-end;gap:8px;padding-top:10px;border-top:1px solid var(--surface-100);">
+                      <button type="button" onClick="{{cancelPeriodo}}" style="height:32px;padding:0 14px;border-radius:var(--radius-sm);border:1px solid var(--surface-200);background:var(--surface-000);color:var(--ink-200);font-size:12.5px;font-weight:700;cursor:pointer;">Cancelar</button>
+                      <button type="button" onClick="{{applyPeriodo}}" style="height:32px;padding:0 14px;border-radius:var(--radius-sm);border:none;background:var(--accent);color:var(--on-accent);font-size:12.5px;font-weight:700;cursor:pointer;">Aplicar</button>
+                    </div>
+                  </div>
+                </div>
+              </sc-if>
+            </div>
+            <div>
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-400);margin-bottom:5px;">Moeda</div>
+              <div style="position:relative;">
+                <select class="f-field f-select f-sm" style="width:150px;" aria-label="Moeda de conversão">
+                  <option>Real (BRL)</option>
+                  <option>Dólar (USD)</option>
+                  <option>Euro (EUR)</option>
+                  <option>Peso colombiano (COP)</option>
+                </select>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--ink-400)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);pointer-events:none;"><path d="M6 9l6 6l6 -6"></path></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- abas -->
+          <div role="tablist" aria-label="Visões da comparação" style="flex:0 0 auto;padding:16px 24px 0;box-sizing:border-box;display:flex;gap:20px;border-bottom:1px solid var(--surface-200);">
+            <button type="button" role="tab" aria-selected="{{tabInsightsOn}}" onClick="{{setTabInsights}}" style="height:36px;padding:0;border:none;background:none;border-bottom:2px solid transparent;font-size:13px;cursor:pointer;{{tabInsightsStyle}}">Insights</button>
+            <button type="button" role="tab" aria-selected="{{tabIaOn}}" onClick="{{setTabIa}}" style="height:36px;padding:0;border:none;background:none;border-bottom:2px solid transparent;font-size:13px;cursor:pointer;{{tabIaStyle}}">IA</button>
+            <button type="button" role="tab" aria-selected="{{tabImportOn}}" onClick="{{setTabImport}}" style="height:36px;padding:0;border:none;background:none;border-bottom:2px solid transparent;font-size:13px;cursor:pointer;{{tabImportStyle}}">Import/Export</button>
+          </div>
+        </sc-if>
+
+        <!-- corpo: conteudo da aba ativa (rolavel) -->
+        <div style="flex:1 1 auto;min-height:0;overflow-y:auto;padding:16px 24px 24px;box-sizing:border-box;display:flex;flex-direction:column;gap:16px;">
+
+          <sc-if value="{{emptyState}}" hint-placeholder-val="{{false}}">
+            <div style="flex:1 1 auto;display:flex;align-items:center;justify-content:center;background:var(--surface-000);border:1px dashed var(--surface-200);border-radius:var(--radius-lg);padding:40px;text-align:center;">
+              <div>
+                <div style="font-size:14px;font-weight:700;color:var(--ink-200);">Nenhum indicador selecionado</div>
+                <div style="font-size:13px;color:var(--ink-400);margin-top:4px;">Use "Adicionar indicador" acima para começar uma comparação.</div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{chartVisible}}" hint-placeholder-val="{{true}}">
+
+          <!-- ==================== ABA: INSIGHTS (3 seções empilhadas) ==================== -->
+          <sc-if value="{{tabInsightsOn}}" hint-placeholder-val="{{true}}">
+          <div role="tabpanel" aria-label="Insights" style="display:flex;flex-direction:column;gap:28px;">
+
+            <!-- ============ Seção 1: Comparação Base 100 ============ -->
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <h2 style="margin:0;font-size:16px;font-weight:800;color:var(--ink-100);">Comparação Base 100</h2>
+
+              <!-- barra de controles do gráfico -->
+              <div style="flex:0 0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:20px;background:var(--surface-000);border:1px solid var(--surface-200);border-radius:var(--radius-lg);padding:14px 16px;">
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <input id="base100" type="checkbox" checked="{{base100On}}" onClick="{{toggleBase100}}" style="width:16px;height:16px;accent-color:var(--accent);cursor:pointer;">
+                  <label for="base100" style="font-size:12px;font-weight:600;color:var(--ink-200);cursor:pointer;">Base 100</label>
+                </div>
+                <div style="display:flex;align-items:center;gap:6px;">
+                  <input id="correl" type="checkbox" checked="{{correlToggleOn}}" onClick="{{toggleCorrel}}" style="width:16px;height:16px;accent-color:var(--accent);cursor:pointer;">
+                  <label for="correl" style="font-size:12px;font-weight:600;color:var(--ink-200);cursor:pointer;">Correlação</label>
+                </div>
+                <div style="flex:1 1 240px;font-size:11px;color:var(--ink-400);">{{base100Note}}</div>
+              </div>
+
+              <!-- cards de leitura rápida -->
+              <div style="flex:0 0 auto;display:flex;flex-wrap:wrap;gap:12px;">
+                <sc-for list="{{seriesInfo}}" as="s" hint-placeholder-count="3">
+                  <div style="flex:1 1 220px;background:var(--surface-000);border:1px solid var(--surface-200);border-radius:var(--radius-lg);padding:14px 16px;">
+                    <div style="display:flex;align-items:center;gap:8px;">
+                      <span style="width:10px;height:10px;border-radius:var(--radius-full);background:{{s.color}};display:inline-block;"></span>
+                      <span style="font-size:13px;font-weight:700;color:var(--ink-100);">{{s.nome}}</span>
+                    </div>
+                    <div style="margin-top:10px;display:flex;align-items:center;gap:4px;font-size:22px;font-weight:800;color:{{s.variacaoColor}};">
+                      <sc-if value="{{s.variacaoUp}}" hint-placeholder-val="{{true}}">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l0 14"></path><path d="M18 11l-6 -6"></path><path d="M6 11l6 -6"></path></svg>
+                      </sc-if>
+                      <sc-if value="{{s.variacaoDown}}" hint-placeholder-val="{{false}}">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5l0 14"></path><path d="M6 13l6 6"></path><path d="M18 13l-6 6"></path></svg>
+                      </sc-if>
+                      {{s.variacaoAbsLabel}}
+                    </div>
+                    <div style="font-size:11px;color:var(--ink-400);">variação 12 meses</div>
+                    <div style="margin-top:10px;font-size:12px;font-weight:600;color:var(--ink-200);">{{s.tendencia}}</div>
+                    <div style="font-size:11px;color:var(--ink-400);margin-top:2px;">Projeção até dez/2026: {{s.projLabel}}</div>
+                  </div>
+                </sc-for>
+              </div>
+
+              <!-- gráfico Base 100 com projeção -->
+              <div style="background:var(--surface-000);border:1px solid var(--surface-200);border-radius:var(--radius-lg);padding:16px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+                  <span style="font-size:13px;font-weight:700;color:var(--ink-200);">Base 100 · fev–dez/2026</span>
+                  <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+                    <sc-for list="{{seriesInfo}}" as="s" hint-placeholder-count="3">
+                      <span style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ink-300);"><span style="width:8px;height:8px;border-radius:var(--radius-full);background:{{s.color}};display:inline-block;"></span>{{s.nome}}</span>
+                    </sc-for>
+                    <button type="button" aria-label="Baixar gráfico e dados (protótipo)" style="flex:0 0 auto;width:26px;height:26px;border-radius:var(--radius-sm);border:1px solid var(--surface-200);background:var(--surface-000);color:var(--ink-300);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path><path d="M7 11l5 5l5 -5"></path><path d="M12 4l0 12"></path></svg>
+                    </button>
+                  </div>
+                </div>
+                <svg width="1072" height="260" viewBox="0 0 1072 260" style="margin-top:10px;display:block;width:100%;height:auto;">
+                  <line x1="8" x2="{{plotRightX}}" y1="{{grid1Y}}" y2="{{grid1Y}}" stroke="var(--surface-200)" stroke-width="1"></line>
+                  <text x="{{gridLabelX}}" y="{{grid1Y}}" dy="3" font-size="10" fill="var(--ink-400)" font-family="Manrope">{{grid1Label}}</text>
+                  <line x1="8" x2="{{plotRightX}}" y1="{{grid2Y}}" y2="{{grid2Y}}" stroke="var(--surface-200)" stroke-width="1"></line>
+                  <text x="{{gridLabelX}}" y="{{grid2Y}}" dy="3" font-size="10" fill="var(--ink-400)" font-family="Manrope">{{grid2Label}}</text>
+                  <line x1="8" x2="{{plotRightX}}" y1="{{grid3Y}}" y2="{{grid3Y}}" stroke="var(--surface-200)" stroke-width="1"></line>
+                  <text x="{{gridLabelX}}" y="{{grid3Y}}" dy="3" font-size="10" fill="var(--ink-400)" font-family="Manrope">{{grid3Label}}</text>
+                  <line x1="8" x2="{{plotRightX}}" y1="{{grid4Y}}" y2="{{grid4Y}}" stroke="var(--surface-200)" stroke-width="1"></line>
+                  <text x="{{gridLabelX}}" y="{{grid4Y}}" dy="3" font-size="10" fill="var(--ink-400)" font-family="Manrope">{{grid4Label}}</text>
+
+                  <line x1="{{hojeX}}" x2="{{hojeX}}" y1="16" y2="232" stroke="var(--ink-400)" stroke-width="1" stroke-dasharray="2 3"></line>
+                  <text x="{{hojeX}}" y="10" text-anchor="middle" font-size="10" font-weight="700" fill="var(--ink-400)" font-family="Manrope">Hoje</text>
+
+                  <text x="{{mesFevX}}" y="252" font-size="10" fill="var(--ink-400)" font-family="Manrope">Fev</text>
+                  <text x="{{mesMaiX}}" y="252" font-size="10" fill="var(--ink-400)" font-family="Manrope">Mai</text>
+                  <text x="{{mesSetX}}" y="252" font-size="10" fill="var(--ink-400)" font-family="Manrope">Set</text>
+                  <text x="{{mesDezX}}" y="252" text-anchor="end" font-size="10" fill="var(--ink-400)" font-family="Manrope">Dez</text>
+
+                  <sc-for list="{{seriesInfo}}" as="s" hint-placeholder-count="3">
+                    <path d="{{s.pathActual}}" fill="none" stroke="{{s.color}}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="{{s.pathForecast}}" fill="none" stroke="{{s.color}}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4" opacity="0.6"></path>
+                  </sc-for>
+                </svg>
+                <div style="font-size:11px;color:var(--ink-400);margin-top:6px;">Linha tracejada = projeção estimada a partir da tendência recente (não é dado real).</div>
+              </div>
+
+              <!-- correlação -->
+              <sc-if value="{{correlVisible}}" hint-placeholder-val="{{false}}">
+                <div style="background:var(--surface-000);border:1px solid var(--surface-200);border-radius:var(--radius-lg);padding:16px;">
+                  <span style="font-size:13px;font-weight:700;color:var(--ink-200);">Correlação da variação</span>
+                  <div style="display:grid;grid-template-columns:96px repeat({{selectedCount}}, 1fr);gap:3px;margin-top:10px;max-width:520px;">
+                    <div></div>
+                    <sc-for list="{{seriesInfo}}" as="h" hint-placeholder-count="3">
+                      <div style="text-align:center;font-size:10.5px;font-weight:700;color:var(--ink-400);padding-bottom:4px;">{{h.nome}}</div>
+                    </sc-for>
+                    <sc-for list="{{corrRows}}" as="row" hint-placeholder-count="3">
+                      <div style="font-size:10.5px;font-weight:700;color:var(--ink-400);display:flex;align-items:center;">{{row.nome}}</div>
+                      <sc-for list="{{row.cells}}" as="c" hint-placeholder-count="3">
+                        <div style="aspect-ratio:1;border-radius:6px;background:{{c.bg}};color:{{c.fg}};display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;">{{c.label}}</div>
+                      </sc-for>
+                    </sc-for>
+                  </div>
+                  <div style="font-size:11px;color:var(--ink-400);margin-top:8px;">Intensidade = força da correlação (Pearson sobre a variação período a período). O Design System ainda não define um par diverging de cor — por isso a força é lida pela intensidade neutra, não por matiz.</div>
+                </div>
+              </sc-if>
+            </div>
+
+            <!-- ============ Seção 2: Insights de Compras ============ -->
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <h2 style="margin:0;font-size:16px;font-weight:800;color:var(--ink-100);">Insights de Compras</h2>
+                <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:var(--radius-pill);background:var(--surface-100);color:var(--ink-400);">Beta</span>
+              </div>
+
+              <div style="background:var(--surface-000);border:1px solid var(--surface-200);border-radius:var(--radius-lg);padding:16px;">
+
+                <sc-if value="{{noInsights}}" hint-placeholder-val="{{false}}">
+                  <div style="font-size:12.5px;color:var(--ink-400);padding:4px 0 12px;">Nenhum insight disponível para os indicadores selecionados no momento.</div>
+                </sc-if>
+
+                <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));gap:12px;">
+                  <sc-for list="{{aiInsights}}" as="item" hint-placeholder-count="3">
+                    <div style="background:var(--surface-050);border:1px solid var(--surface-200);border-radius:var(--radius-sm);padding:12px;display:flex;flex-direction:column;gap:8px;">
+                      <div style="display:flex;align-items:center;justify-content:space-between;">
+                        <div style="display:flex;gap:3px;">
+                          <sc-for list="{{item.dots}}" as="d" hint-placeholder-count="1">
+                            <span style="width:8px;height:8px;border-radius:var(--radius-full);background:{{d.color}};display:inline-block;"></span>
+                          </sc-for>
+                        </div>
+                        <button type="button" aria-label="Ver fonte (ilustrativo)" style="width:22px;height:22px;border:none;background:none;color:var(--ink-400);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5"></path><path d="M10 14l10 -10"></path><path d="M15 4l5 0l0 5"></path></svg>
+                        </button>
+                      </div>
+                      <div style="font-size:12.5px;color:var(--ink-200);line-height:1.45;flex:1 1 auto;">{{item.text}}</div>
+                      <div style="font-size:11px;color:var(--ink-400);">{{item.date}} · {{item.sourcesLabel}}</div>
+                    </div>
+                  </sc-for>
+                </div>
+
+                <div style="font-size:10.5px;color:var(--ink-400);margin-top:12px;">Gerado por IA a partir de múltiplas fontes — verifique antes de usar em decisão formal.</div>
+
+                <!-- campo de mensagem: ao enviar, abre o modal de tela inteira -->
+                <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--surface-100);display:flex;gap:8px;">
+                  <input class="f-field f-sm" placeholder="Pergunte à IA sobre esses dados…" style="flex:1 1 auto;" aria-label="Pergunte à IA sobre esses dados">
+                  <button type="button" aria-label="Enviar pergunta" onClick="{{openChatModal}}" style="flex:0 0 auto;width:32px;height:32px;border-radius:var(--radius-sm);border:none;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l11 -11"></path><path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5"></path></svg>
+                  </button>
+                </div>
+                <div style="font-size:10.5px;color:var(--ink-400);margin-top:6px;">Enviar abre a conversa completa em tela cheia — o exemplo lá é ilustrativo, o campo não é funcional aqui.</div>
+              </div>
+            </div>
+
+            <!-- ============ Seção 3: Detalhamento de Indicadores ============ -->
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <h2 style="margin:0;font-size:16px;font-weight:800;color:var(--ink-100);">Detalhamento de Indicadores</h2>
+              <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:16px;">
+                <sc-for list="{{detalheCards}}" as="d" hint-placeholder-count="3">
+                  <div style="background:var(--surface-000);border:1px solid var(--surface-200);border-radius:var(--radius-lg);padding:16px;">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+                      <div style="display:flex;align-items:center;gap:8px;min-width:0;">
+                        <span style="width:10px;height:10px;border-radius:var(--radius-full);background:{{d.color}};display:inline-block;flex:0 0 auto;"></span>
+                        <span style="font-size:13px;font-weight:700;color:var(--ink-100);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{d.nome}}</span>
+                      </div>
+                      <button type="button" aria-label="Baixar gráfico e dados (protótipo)" style="flex:0 0 auto;width:28px;height:28px;border-radius:var(--radius-sm);border:1px solid var(--surface-200);background:var(--surface-000);color:var(--ink-300);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2"></path><path d="M7 11l5 5l5 -5"></path><path d="M12 4l0 12"></path></svg>
+                      </button>
+                    </div>
+                    <svg width="514" height="180" viewBox="0 0 514 180" style="margin-top:8px;display:block;width:100%;height:auto;">
+                      <line x1="8" x2="446" y1="{{d.grid1Y}}" y2="{{d.grid1Y}}" stroke="var(--surface-200)" stroke-width="1"></line>
+                      <text x="452" y="{{d.grid1Y}}" dy="3" font-size="9" fill="var(--ink-400)" font-family="Manrope">{{d.grid1Label}}</text>
+                      <line x1="8" x2="446" y1="{{d.grid2Y}}" y2="{{d.grid2Y}}" stroke="var(--surface-200)" stroke-width="1"></line>
+                      <text x="452" y="{{d.grid2Y}}" dy="3" font-size="9" fill="var(--ink-400)" font-family="Manrope">{{d.grid2Label}}</text>
+                      <line x1="8" x2="446" y1="{{d.grid3Y}}" y2="{{d.grid3Y}}" stroke="var(--surface-200)" stroke-width="1"></line>
+                      <text x="452" y="{{d.grid3Y}}" dy="3" font-size="9" fill="var(--ink-400)" font-family="Manrope">{{d.grid3Label}}</text>
+                      <line x1="{{d.hojeX}}" x2="{{d.hojeX}}" y1="10" y2="152" stroke="var(--ink-400)" stroke-width="1" stroke-dasharray="2 3"></line>
+                      <text x="{{d.hojeX}}" y="8" text-anchor="middle" font-size="8.5" font-weight="700" fill="var(--ink-400)" font-family="Manrope">Hoje</text>
+                      <text x="{{d.mesInicioX}}" y="170" font-size="9" fill="var(--ink-400)" font-family="Manrope">Fev</text>
+                      <text x="{{d.mesFimX}}" y="170" text-anchor="end" font-size="9" fill="var(--ink-400)" font-family="Manrope">Dez</text>
+                      <path d="{{d.pathActual}}" fill="none" stroke="{{d.color}}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="{{d.pathForecast}}" fill="none" stroke="{{d.color}}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4" opacity="0.6"></path>
+                    </svg>
+                    <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--ink-400);margin-top:2px;">
+                      <span>{{d.fonte}} · {{d.pais}}</span>
+                      <span>{{d.variacaoLabel}} · {{d.tendencia}}</span>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+          </div>
+          </sc-if>
+
+          <!-- ==================== ABA: IA (nova; o mesmo componente de Insights
+               de Compras continua também dentro de Insights — só o mobile tira
+               de lá, por espaço) ==================== -->
+          <sc-if value="{{tabIaOn}}" hint-placeholder-val="{{false}}">
+          <div role="tabpanel" aria-label="IA" style="display:flex;flex-direction:column;gap:16px;">
+
+            <div style="display:flex;flex-direction:column;gap:16px;">
+              <div style="display:flex;align-items:center;gap:8px;">
+                <h2 style="margin:0;font-size:16px;font-weight:800;color:var(--ink-100);">Insights de Compras</h2>
+                <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:var(--radius-pill);background:var(--surface-100);color:var(--ink-400);">Beta</span>
+              </div>
+
+              <div style="background:var(--surface-000);border:1px solid var(--surface-200);border-radius:var(--radius-lg);padding:16px;">
+
+                <sc-if value="{{noInsights}}" hint-placeholder-val="{{false}}">
+                  <div style="font-size:12.5px;color:var(--ink-400);padding:4px 0 12px;">Nenhum insight disponível para os indicadores selecionados no momento.</div>
+                </sc-if>
+
+                <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(240px, 1fr));gap:12px;">
+                  <sc-for list="{{aiInsights}}" as="item" hint-placeholder-count="3">
+                    <div style="background:var(--surface-050);border:1px solid var(--surface-200);border-radius:var(--radius-sm);padding:12px;display:flex;flex-direction:column;gap:8px;">
+                      <div style="display:flex;align-items:center;justify-content:space-between;">
+                        <div style="display:flex;gap:3px;">
+                          <sc-for list="{{item.dots}}" as="d" hint-placeholder-count="1">
+                            <span style="width:8px;height:8px;border-radius:var(--radius-full);background:{{d.color}};display:inline-block;"></span>
+                          </sc-for>
+                        </div>
+                        <button type="button" aria-label="Ver fonte (ilustrativo)" style="width:22px;height:22px;border:none;background:none;color:var(--ink-400);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 7h-5a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-5"></path><path d="M10 14l10 -10"></path><path d="M15 4l5 0l0 5"></path></svg>
+                        </button>
+                      </div>
+                      <div style="font-size:12.5px;color:var(--ink-200);line-height:1.45;flex:1 1 auto;">{{item.text}}</div>
+                      <div style="font-size:11px;color:var(--ink-400);">{{item.date}} · {{item.sourcesLabel}}</div>
+                    </div>
+                  </sc-for>
+                </div>
+
+                <div style="font-size:10.5px;color:var(--ink-400);margin-top:12px;">Gerado por IA a partir de múltiplas fontes — verifique antes de usar em decisão formal.</div>
+
+                <!-- campo de mensagem: ao enviar, abre o modal de tela inteira -->
+                <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--surface-100);display:flex;gap:8px;">
+                  <input class="f-field f-sm" placeholder="Pergunte à IA sobre esses dados…" style="flex:1 1 auto;" aria-label="Pergunte à IA sobre esses dados">
+                  <button type="button" aria-label="Enviar pergunta" onClick="{{openChatModal}}" style="flex:0 0 auto;width:32px;height:32px;border-radius:var(--radius-sm);border:none;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l11 -11"></path><path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5"></path></svg>
+                  </button>
+                </div>
+                <div style="font-size:10.5px;color:var(--ink-400);margin-top:6px;">Enviar abre a conversa completa em tela cheia — o exemplo lá é ilustrativo, o campo não é funcional aqui.</div>
+              </div>
+            </div>
+
+          </div>
+          </sc-if>
+
+          <!-- ==================== ABA: IMPORT/EXPORT ==================== -->
+          <sc-if value="{{tabImportOn}}" hint-placeholder-val="{{false}}">
+          <div role="tabpanel" aria-label="Import/Export" style="display:flex;flex-direction:column;gap:16px;">
+
+            <sc-if value="{{noFluxoSelected}}" hint-placeholder-val="{{false}}">
+              <div style="flex:1 1 auto;display:flex;align-items:center;justify-content:center;background:var(--surface-000);border:1px dashed var(--surface-200);border-radius:var(--radius-lg);padding:40px;text-align:center;">
+                <div>
+                  <div style="font-size:14px;font-weight:700;color:var(--ink-200);">Nenhum indicador com fluxo de comércio exterior selecionado</div>
+                  <div style="font-size:13px;color:var(--ink-400);margin-top:4px;">Adicione um indicador como Diesel, Aço Carbono ou Soja para ver dados de importação/exportação.</div>
+                </div>
+              </div>
+            </sc-if>
+
+            <sc-for list="{{fluxoCards}}" as="fc" hint-placeholder-count="2">
+              <div style="background:var(--surface-000);border:1px solid var(--surface-200);border-radius:var(--radius-lg);padding:16px;">
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                  <span style="width:10px;height:10px;border-radius:var(--radius-full);background:{{fc.color}};display:inline-block;"></span>
+                  <span style="font-size:13px;font-weight:700;color:var(--ink-100);">{{fc.nome}}</span>
+                  <span style="font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:var(--radius-sm);background:var(--surface-100);color:var(--ink-300);">{{fc.fluxoLabel}}</span>
+                  <span style="font-size:11px;color:var(--ink-400);">{{fc.pais}}</span>
+                </div>
+                <div style="display:flex;gap:24px;margin-top:14px;flex-wrap:wrap;">
+                  <div style="flex:1 1 220px;min-width:0;">
+                    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-400);">Volume negociado</div>
+                    <svg width="245" height="84" viewBox="0 0 245 84" style="margin-top:6px;display:block;width:100%;height:auto;">
+                      <line x1="4" x2="209" y1="{{fc.volumeTopY}}" y2="{{fc.volumeTopY}}" stroke="var(--surface-200)" stroke-width="1"></line>
+                      <text x="213" y="{{fc.volumeTopY}}" dy="3" font-size="9" fill="var(--ink-400)" font-family="Manrope">{{fc.volumeTopLabel}}</text>
+                      <line x1="4" x2="209" y1="{{fc.volumeBotY}}" y2="{{fc.volumeBotY}}" stroke="var(--surface-200)" stroke-width="1"></line>
+                      <text x="213" y="{{fc.volumeBotY}}" dy="3" font-size="9" fill="var(--ink-400)" font-family="Manrope">{{fc.volumeBotLabel}}</text>
+                      <text x="{{fc.mesInicioX}}" y="82" font-size="9" fill="var(--ink-400)" font-family="Manrope">Fev</text>
+                      <text x="{{fc.mesFimX}}" y="82" text-anchor="end" font-size="9" fill="var(--ink-400)" font-family="Manrope">Set</text>
+                      <path d="{{fc.volumeSpark}}" fill="none" stroke="{{fc.color}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                    <div style="font-size:13px;font-weight:800;color:var(--ink-100);margin-top:2px;">{{fc.volumeLatest}} <span style="font-size:11px;font-weight:500;color:var(--ink-400);">{{fc.unidade}}</span></div>
+                    <div style="font-size:11px;color:{{fc.volumeDeltaColor}};">{{fc.volumeDeltaLabel}}</div>
+                  </div>
+                  <div style="flex:1 1 220px;min-width:0;">
+                    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--ink-400);">CIF vs FOB</div>
+                    <svg width="245" height="84" viewBox="0 0 245 84" style="margin-top:6px;display:block;width:100%;height:auto;">
+                      <line x1="4" x2="209" y1="{{fc.fobCifTopY}}" y2="{{fc.fobCifTopY}}" stroke="var(--surface-200)" stroke-width="1"></line>
+                      <text x="213" y="{{fc.fobCifTopY}}" dy="3" font-size="9" fill="var(--ink-400)" font-family="Manrope">{{fc.fobCifTopLabel}}</text>
+                      <line x1="4" x2="209" y1="{{fc.fobCifBotY}}" y2="{{fc.fobCifBotY}}" stroke="var(--surface-200)" stroke-width="1"></line>
+                      <text x="213" y="{{fc.fobCifBotY}}" dy="3" font-size="9" fill="var(--ink-400)" font-family="Manrope">{{fc.fobCifBotLabel}}</text>
+                      <text x="{{fc.mesInicioX}}" y="82" font-size="9" fill="var(--ink-400)" font-family="Manrope">Fev</text>
+                      <text x="{{fc.mesFimX}}" y="82" text-anchor="end" font-size="9" fill="var(--ink-400)" font-family="Manrope">Set</text>
+                      <path d="{{fc.fobSpark}}" fill="none" stroke="{{fc.color}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                      <path d="{{fc.cifSpark}}" fill="none" stroke="{{fc.color}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="4 3" opacity="0.55"></path>
+                    </svg>
+                    <div style="display:flex;gap:12px;margin-top:2px;flex-wrap:wrap;">
+                      <span style="font-size:12px;color:var(--ink-300);">FOB {{fc.fobLatest}}</span>
+                      <span style="font-size:12px;color:var(--ink-300);">CIF {{fc.cifLatest}}</span>
+                      <span style="font-size:12px;font-weight:700;color:var(--ink-200);">Spread {{fc.spreadLabel}}</span>
+                    </div>
+                  </div>
+                </div>
+                <div style="font-size:11px;color:var(--ink-400);margin-top:10px;">CIF inclui frete e seguro até o destino; FOB é o preço na origem, antes do transporte. Linha tracejada = CIF.</div>
+              </div>
+            </sc-for>
+
+          </div>
+          </sc-if>
+
+          </sc-if>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="height:36px;flex:0 0 36px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-top:1px solid var(--surface-200);background:var(--surface-000);box-sizing:border-box;">
+    <span style="font-size:11px;color:var(--ink-400);">Dados atualizados há 4 min</span>
+    <span style="font-size:11px;color:var(--ink-400);">COSTDRIVERS · estrutura em revisão</span>
+  </div>
+
+  <!-- modal de tela cheia: conversa expandida com a IA (aberto ao enviar mensagem em Insights de Compras) -->
+  <sc-if value="{{chatModalOpen}}" hint-placeholder-val="{{false}}">
+    <div style="position:fixed;inset:0;background:rgba(17,17,17,0.45);z-index:100;display:flex;align-items:center;justify-content:center;">
+      <div style="width:720px;max-width:92%;height:820px;max-height:90%;background:var(--surface-000);border-radius:var(--radius-lg);box-shadow:0 24px 64px rgba(17,17,17,0.28);display:flex;flex-direction:column;overflow:hidden;">
+        <div style="flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--surface-200);">
+          <div>
+            <div style="font-size:15px;font-weight:800;color:var(--ink-100);">Assistente de Compras</div>
+            <div style="font-size:11.5px;color:var(--ink-400);">Respostas geradas por IA a partir dos dados e notícias desta comparação.</div>
+          </div>
+          <button type="button" aria-label="Fechar" onClick="{{closeChatModal}}" style="width:32px;height:32px;border:none;background:var(--surface-100);border-radius:var(--radius-sm);color:var(--ink-300);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6l-12 12"></path><path d="M6 6l12 12"></path></svg>
+          </button>
+        </div>
+        <div style="flex:1 1 auto;min-height:0;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px;">
+          <div style="align-self:flex-end;max-width:70%;background:var(--accent-50);color:var(--accent-text);font-size:13px;padding:10px 14px;border-radius:14px 14px 2px 14px;">{{exampleQuestion}}</div>
+          <div style="align-self:flex-start;max-width:75%;background:var(--surface-050);color:var(--ink-200);font-size:13px;line-height:1.55;padding:10px 14px;border-radius:14px 14px 14px 2px;">{{chatExampleAnswer}}</div>
+          <div style="align-self:flex-end;max-width:70%;background:var(--accent-50);color:var(--accent-text);font-size:13px;padding:10px 14px;border-radius:14px 14px 2px 14px;">{{followupQuestion}}</div>
+          <div style="align-self:flex-start;max-width:75%;background:var(--surface-050);color:var(--ink-200);font-size:13px;line-height:1.55;padding:10px 14px;border-radius:14px 14px 14px 2px;">{{followupAnswer}}</div>
+        </div>
+        <div style="flex:0 0 auto;padding:16px 20px;border-top:1px solid var(--surface-200);display:flex;gap:10px;">
+          <input class="f-field" placeholder="Pergunte à IA sobre esses dados…" style="flex:1 1 auto;" aria-label="Pergunte à IA sobre esses dados">
+          <button type="button" aria-label="Enviar pergunta" style="flex:0 0 auto;width:36px;height:36px;border-radius:var(--radius-sm);border:none;background:var(--accent);color:var(--on-accent);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14l11 -11"></path><path d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5"></path></svg>
+          </button>
+        </div>
+        <div style="flex:0 0 auto;padding:0 20px 14px;font-size:10.5px;color:var(--ink-400);">Conversa acima é um exemplo ilustrativo — protótipo, não funcional.</div>
+      </div>
+    </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1120}}'>
+class Component extends DCLogic {
+  renderVals() {
+    // ---- modo claro/escuro (claro é o padrão) — switch no rodapé do menu.
+    // Os tokens de cada tema vivem no CSS (:root vs #app-shell[data-theme="dark"]);
+    // aqui só decidimos o estado e o estilo do switch. Ver nota de contraste
+    // no <style> sobre os 2 tokens do modo escuro abaixo da meta de 4,5:1.
+    const theme = this.state.theme ?? 'light';
+    const isDark = theme === 'dark';
+    const toggleTheme = () => this.setState({ theme: isDark ? 'light' : 'dark' });
+    const themeSwitchTrackStyle = isDark ? 'background:var(--accent);' : 'background:var(--surface-200);';
+    const themeSwitchThumbStyle = isDark ? 'transform:translateX(16px);' : 'transform:translateX(0);';
+
+    const pos = { txt: 'var(--success)', bg: 'var(--success-tonal)' };
+    // Variação negativa usa warning (âmbar), não danger (vermelho) — a pedido
+    // de Andre (2026-09-28): o vermelho ficava destoando do azul do acento
+    // nesta pill, e queda de indicador é rotina de mercado, não um alerta
+    // crítico — reservamos danger/vermelho para erro/estado crítico de verdade.
+    const neg = { txt: 'var(--warning)', bg: 'var(--warning-tonal)' };
+    const mk = (name, value, up) => ({ name, value, txt: up ? pos.txt : neg.txt, bg: up ? pos.bg : neg.bg });
+
+    const favIndicadores = [
+      mk('IGP-M', '+6,2%', true),
+      mk('Soja', '+3,1%', true),
+    ];
+    const favCostModels = [
+      mk('Pneu', '+5,4%', true),
+      mk('Embalagem Plástica', '-3,0%', false),
+    ];
+    const favContratos = [
+      mk('Contrato — Aço Carbono', '+14,6%', true),
+      mk('Contrato — Etanol', '-4,3%', false),
+    ];
+
+    // ---------- Comparação de indicadores (repensada do zero) ----------
+    // Catálogo mock (dados fictícios para fins de mockup, não métricas reais
+    // de nenhum cliente). Cada item traz um histórico (8 pontos, real/passado)
+    // do qual sparkline, variação, tendência, projeção e correlação são
+    // derivados por código — nunca digitados à mão.
+    const RAW = {
+      igpm:    { nome: 'IGP-M',                       pais: 'Brasil',    tipo: 'indice', fluxo: '—',           fonte: 'FGV',                   hist: [1350, 1361, 1370, 1387, 1398, 1409, 1418, 1435] },
+      ipca:    { nome: 'IPC-A',                       pais: 'Brasil',    tipo: 'indice', fluxo: '—',           fonte: 'IBGE',                  hist: [6900, 6935, 6968, 7010, 7050, 7090, 7125, 7180] },
+      celulose:{ nome: 'Celulose',                    pais: 'Brasil',    tipo: 'preco',  fluxo: 'Exportação',  fonte: 'IBÁ',                   hist: [820, 812, 805, 796, 790, 782, 788, 803] },
+      energia: { nome: 'Energia Elétrica — Sudeste',  pais: 'Brasil',    tipo: 'preco',  fluxo: '—',           fonte: 'CCEE',                  hist: [210, 215, 220, 225, 222, 228, 231, 234] },
+      diesel:  { nome: 'Diesel',                      pais: 'Brasil',    tipo: 'preco',  fluxo: 'Importação',  fonte: 'ANP',                   hist: [6.10, 6.05, 6.20, 6.35, 6.28, 6.40, 6.55, 6.62] },
+      aco:     { nome: 'Aço Carbono',                 pais: 'Brasil',    tipo: 'preco',  fluxo: 'Importação',  fonte: 'Instituto Aço Brasil',  hist: [780, 790, 805, 815, 808, 825, 840, 856] },
+      etanol:  { nome: 'Etanol',                      pais: 'Brasil',    tipo: 'preco',  fluxo: 'Exportação',  fonte: 'CEPEA',                 hist: [3.20, 3.15, 3.05, 2.98, 3.02, 2.95, 2.88, 2.82] },
+      ipp_co:  { nome: 'IPP',                         pais: 'Colômbia',  tipo: 'indice', fluxo: '—',           fonte: 'DANE',                  hist: [118, 119, 120, 121, 123, 124, 125, 127] },
+      soja:    { nome: 'Soja',                        pais: 'Brasil',    tipo: 'preco',  fluxo: 'Exportação',  fonte: 'CEPEA',                 hist: [148, 150, 153, 151, 155, 158, 160, 163] },
+      milho:   { nome: 'Milho',                       pais: 'Brasil',    tipo: 'preco',  fluxo: 'Exportação',  fonte: 'CEPEA',                 hist: [72, 71, 69, 67, 68, 66, 64, 63] },
+    };
+    // Dados extras (também fictícios/ilustrativos) só para indicadores com
+    // fluxo de comércio exterior — usados na aba Import/Export.
+    const FLUXO_EXTRA = {
+      diesel:   { unidade: 'mil m³',  volume: [180, 175, 182, 170, 168, 174, 165, 160], margem: 0.11 },
+      aco:      { unidade: 'mil ton', volume: [95, 98, 101, 97, 94, 99, 102, 105],       margem: 0.09 },
+      soja:     { unidade: 'mil ton', volume: [620, 610, 640, 600, 615, 630, 605, 590],  margem: 0.07 },
+      celulose: { unidade: 'mil ton', volume: [310, 305, 300, 295, 290, 285, 292, 300],  margem: 0.08 },
+      etanol:   { unidade: 'mil m³',  volume: [140, 138, 135, 130, 133, 128, 125, 120],  margem: 0.10 },
+      milho:    { unidade: 'mil ton', volume: [450, 440, 460, 470, 455, 465, 480, 490],  margem: 0.06 },
+    };
+    // Insights de IA (fictícios/ilustrativos) — conectam notícia de mercado a
+    // um ou mais indicadores, para o comprador entender o "porquê" da variação.
+    const AI_INSIGHTS_BANK = [
+      { ids: ['aco', 'diesel'], text: 'Tarifa de importação de aço nos EUA eleva custo logístico e pressiona frete de diesel na rota de exportação.', date: '25/set', sources: 6 },
+      { ids: ['diesel'], text: 'Corte de produção da OPEP+ sustenta alta do petróleo Brent, impactando o preço do diesel no mercado interno.', date: '22/set', sources: 9 },
+      { ids: ['igpm', 'ipca'], text: 'Reajuste de tarifas de energia elétrica pressiona IGP-M e IPC-A no mês.', date: '18/set', sources: 4 },
+      { ids: ['soja'], text: 'Quebra de safra na Argentina reduz oferta global e sustenta os preços da soja.', date: '20/set', sources: 7 },
+      { ids: ['milho'], text: 'Clima favorável nos EUA aumenta a expectativa de safra recorde, pressionando o preço do milho para baixo.', date: '19/set', sources: 5 },
+      { ids: ['celulose'], text: 'Demanda mais fraca da China por papel reduz o preço da celulose no mercado internacional.', date: '16/set', sources: 3 },
+      { ids: ['etanol'], text: 'Sinalização de redução na mistura de etanol na gasolina pressiona o preço para baixo.', date: '12/set', sources: 4 },
+      { ids: ['energia'], text: 'Período de chuvas abaixo da média eleva o acionamento de térmicas e pressiona o preço de energia no Sudeste.', date: '10/set', sources: 5 },
+      { ids: ['aco'], text: 'Sobretaxa antidumping sobre aço importado da China favorece produtores locais e sustenta o preço.', date: '08/set', sources: 6 },
+      { ids: ['ipp_co'], text: 'Depreciação do peso colombiano pressiona o índice de preços ao produtor (IPP) na Colômbia.', date: '05/set', sources: 3 },
+    ];
+
+    const MAX_SELECTED = 4;
+    const NFUTURE = 3;
+
+    const selectedIds = this.state.selectedIds ?? ['igpm', 'ipca', 'diesel'];
+    const catalogOpen = this.state.catalogOpen ?? false;
+    const activeTab = this.state.activeTab ?? 'insights';
+
+    const toggleCatalog = () => this.setState({ catalogOpen: !(this.state.catalogOpen ?? false) });
+    const toggleSelect = (id) => {
+      const cur = this.state.selectedIds ?? ['igpm', 'ipca', 'diesel'];
+      if (cur.includes(id)) {
+        this.setState({ selectedIds: cur.filter((x) => x !== id) });
+      } else if (cur.length < MAX_SELECTED) {
+        this.setState({ selectedIds: [...cur, id] });
+      }
+    };
+    const toggleBase100 = () => {
+      const mixed = selectedIds.some((id) => RAW[id].tipo === 'indice') && selectedIds.some((id) => RAW[id].tipo === 'preco');
+      const cur = this.state.base100 ?? mixed;
+      this.setState({ base100: !cur });
+    };
+    const toggleCorrel = () => this.setState({ showCorrel: !(this.state.showCorrel ?? false) });
+    const setTabInsights = () => this.setState({ activeTab: 'insights' });
+    const setTabIa = () => this.setState({ activeTab: 'ia' });
+    const setTabImport = () => this.setState({ activeTab: 'import' });
+    const chatModalOpen = this.state.chatModalOpen ?? false;
+    const openChatModal = () => this.setState({ chatModalOpen: true });
+    const closeChatModal = () => this.setState({ chatModalOpen: false });
+
+    // ---- seletor de período (estilo Google Analytics): presets calculados
+    // a partir de "hoje" + calendário de 2 meses para range personalizado.
+    // "Personalizado" foi adicionado à lista pedida por não ter sido descrito
+    // — é o que abre o calendário para escolha manual, como no exemplo enviado.
+    const HOJE_ISO = '2026-09-28';
+    const MESES_ABBR = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+    const DIAS_SEMANA = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
+    const pad2 = (n) => String(n).padStart(2, '0');
+    const isoDate = (y, m, d) => y + '-' + pad2(m + 1) + '-' + pad2(d);
+    const parseISO = (s) => { const [y, m, d] = s.split('-').map(Number); return new Date(Date.UTC(y, m - 1, d)); };
+    const fmtBR = (iso) => { const dt = parseISO(iso); return pad2(dt.getUTCDate()) + '/' + MESES_ABBR[dt.getUTCMonth()] + '/' + dt.getUTCFullYear(); };
+    const addDays = (iso, n) => { const dt = parseISO(iso); dt.setUTCDate(dt.getUTCDate() + n); return isoDate(dt.getUTCFullYear(), dt.getUTCMonth(), dt.getUTCDate()); };
+    const startOfMonth = (y, m) => isoDate(y, m, 1);
+    const endOfMonth = (y, m) => { const d = new Date(Date.UTC(y, m + 1, 0)); return isoDate(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()); };
+    const todayDt = parseISO(HOJE_ISO);
+
+    const PERIODO_PRESETS = [
+      { key: 'custom', label: 'Personalizado' },
+      { key: 'semana_atual', label: 'Esta semana' },
+      { key: 'ult_7', label: 'Últimos 7 dias' },
+      { key: 'ult_14', label: 'Últimos 14 dias' },
+      { key: 'ult_30', label: 'Últimos 30 dias' },
+      { key: 'este_mes', label: 'Este mês' },
+      { key: 'mes_passado', label: 'Mês passado' },
+      { key: 'ult_90', label: 'Últimos 90 dias' },
+      { key: 'trimestre', label: 'Acumulado no trimestre' },
+      { key: 'ult_12m', label: 'Últimos 12 meses' },
+      { key: 'este_ano', label: 'Este ano (Janeiro – Hoje)' },
+      { key: 'ano_passado', label: 'Ano passado' },
+    ];
+    const computePreset = (key) => {
+      const y = todayDt.getUTCFullYear(), m = todayDt.getUTCMonth();
+      switch (key) {
+        case 'semana_atual': return { de: addDays(HOJE_ISO, -todayDt.getUTCDay()), ate: HOJE_ISO };
+        case 'ult_7': return { de: addDays(HOJE_ISO, -6), ate: HOJE_ISO };
+        case 'ult_14': return { de: addDays(HOJE_ISO, -13), ate: HOJE_ISO };
+        case 'ult_30': return { de: addDays(HOJE_ISO, -29), ate: HOJE_ISO };
+        case 'este_mes': return { de: startOfMonth(y, m), ate: HOJE_ISO };
+        case 'mes_passado': { const pm = m === 0 ? 11 : m - 1, py = m === 0 ? y - 1 : y; return { de: startOfMonth(py, pm), ate: endOfMonth(py, pm) }; }
+        case 'ult_90': return { de: addDays(HOJE_ISO, -89), ate: HOJE_ISO };
+        case 'trimestre': return { de: startOfMonth(y, Math.floor(m / 3) * 3), ate: HOJE_ISO };
+        case 'ult_12m': return { de: addDays(HOJE_ISO, -364), ate: HOJE_ISO };
+        case 'este_ano': return { de: startOfMonth(y, 0), ate: HOJE_ISO };
+        case 'ano_passado': return { de: startOfMonth(y - 1, 0), ate: endOfMonth(y - 1, 11) };
+        default: return { de: HOJE_ISO, ate: HOJE_ISO };
+      }
+    };
+
+    const periodoPreset = this.state.periodoPreset ?? 'este_ano';
+    const periodoDefault = computePreset(periodoPreset);
+    const periodoDe = this.state.periodoDe ?? periodoDefault.de;
+    const periodoAte = this.state.periodoAte ?? periodoDefault.ate;
+    const periodoLabel = fmtBR(periodoDe) + ' – ' + fmtBR(periodoAte);
+    const periodoOpen = this.state.periodoOpen ?? false;
+
+    const openPeriodo = () => this.setState({ periodoOpen: true, periodoDraftPreset: periodoPreset, periodoDraftDe: periodoDe, periodoDraftAte: periodoAte, periodoPickStep: 'de' });
+    const togglePeriodo = () => (periodoOpen ? this.setState({ periodoOpen: false }) : openPeriodo());
+    const cancelPeriodo = () => this.setState({ periodoOpen: false });
+    const applyPeriodo = () => this.setState({ periodoOpen: false, periodoPreset: periodoDraftPreset, periodoDe: periodoDraftDe, periodoAte: periodoDraftAte });
+    const pickPreset = (key) => () => {
+      if (key === 'custom') { this.setState({ periodoDraftPreset: 'custom', periodoPickStep: 'de' }); return; }
+      const r = computePreset(key);
+      this.setState({ periodoDraftPreset: key, periodoDraftDe: r.de, periodoDraftAte: r.ate, periodoPickStep: 'de' });
+    };
+    const pickDay = (iso) => () => {
+      const step = this.state.periodoPickStep ?? 'de';
+      if (step === 'de') { this.setState({ periodoDraftPreset: 'custom', periodoDraftDe: iso, periodoDraftAte: iso, periodoPickStep: 'ate' }); return; }
+      const de = this.state.periodoDraftDe ?? periodoDraftDe;
+      if (iso < de) this.setState({ periodoDraftDe: iso, periodoDraftAte: de, periodoPickStep: 'de' });
+      else this.setState({ periodoDraftAte: iso, periodoPickStep: 'de' });
+    };
+
+    const periodoDraftPreset = this.state.periodoDraftPreset ?? periodoPreset;
+    const periodoDraftDe = this.state.periodoDraftDe ?? periodoDe;
+    const periodoDraftAte = this.state.periodoDraftAte ?? periodoAte;
+    const periodoDraftDeLabel = fmtBR(periodoDraftDe);
+    const periodoDraftAteLabel = fmtBR(periodoDraftAte);
+
+    const periodoActiveStyle = 'background:var(--accent-50);color:var(--accent-text);font-weight:700;';
+    const periodoInactiveStyle = 'background:none;color:var(--ink-300);font-weight:500;';
+    const periodoPresetItems = PERIODO_PRESETS.map((p) => ({
+      key: p.key, label: p.label,
+      onClick: pickPreset(p.key),
+      itemStyle: p.key === periodoDraftPreset ? periodoActiveStyle : periodoInactiveStyle,
+    }));
+
+    const buildMonthGrid = (y, m) => {
+      const firstDow = new Date(Date.UTC(y, m, 1)).getUTCDay();
+      const daysInMonth = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+      const cells = [];
+      for (let i = 0; i < firstDow; i++) cells.push(null);
+      for (let d = 1; d <= daysInMonth; d++) cells.push(d);
+      while (cells.length % 7 !== 0) cells.push(null);
+      return cells.map((d) => {
+        if (d === null) return { blank: true, filled: false };
+        const iso = isoDate(y, m, d);
+        const inRange = iso >= periodoDraftDe && iso <= periodoDraftAte;
+        const isEdge = iso === periodoDraftDe || iso === periodoDraftAte;
+        const isToday = iso === HOJE_ISO;
+        let style = 'background:none;color:var(--ink-200);font-weight:500;';
+        if (isEdge) style = 'background:var(--accent);color:var(--on-accent);font-weight:800;';
+        else if (inRange) style = 'background:var(--accent-50);color:var(--ink-200);font-weight:600;';
+        else if (isToday) style = 'background:none;color:var(--accent-text);font-weight:800;box-shadow:inset 0 0 0 1px var(--accent);';
+        return { blank: false, filled: true, day: d, onClick: pickDay(iso), style };
+      });
+    };
+    const endYM = parseISO(periodoDraftAte);
+    const monthBY = endYM.getUTCFullYear(), monthBM = endYM.getUTCMonth();
+    const monthAM = monthBM === 0 ? 11 : monthBM - 1, monthAY = monthBM === 0 ? monthBY - 1 : monthBY;
+    const calMonthALabel = MESES_ABBR[monthAM] + ' ' + monthAY;
+    const calMonthBLabel = MESES_ABBR[monthBM] + ' ' + monthBY;
+    const calMonthACells = buildMonthGrid(monthAY, monthAM);
+    const calMonthBCells = buildMonthGrid(monthBY, monthBM);
+    const diasSemanaLabels = DIAS_SEMANA;
+
+    const sparkPath = (values, w, h, pad) => {
+      const min = Math.min(...values), max = Math.max(...values);
+      const range = (max - min) || 1;
+      const step = (w - pad * 2) / (values.length - 1);
+      return values.map((v, i) => {
+        const x = pad + i * step;
+        const y = pad + (h - pad * 2) * (1 - (v - min) / range);
+        return (i === 0 ? 'M' : 'L') + x.toFixed(1) + ',' + y.toFixed(1);
+      }).join(' ');
+    };
+    // eixos dos mini-gráficos de Import/Export (valor + período) — a pedido
+    // de Andre: antes eram sparklines puras (sem nenhuma escala) num SVG de
+    // largura fixa que não acompanhava a largura real do card.
+    const FLUXO_W = 245, FLUXO_H = 84;
+    const fPadL = 4, fPadR = 36, fPadT = 10, fPadB = 16;
+    const fPlotW = FLUXO_W - fPadL - fPadR, fPlotH = FLUXO_H - fPadT - fPadB;
+    const fxAt = (i, n) => fPadL + i * (fPlotW / (n - 1));
+    const fMesInicioX = fxAt(0, 8).toFixed(1), fMesFimX = fxAt(7, 8).toFixed(1);
+    const fluxoAxis = (values) => {
+      const min = Math.min(...values), max = Math.max(...values);
+      const span = (max - min) || 1;
+      const dMin = min - span * 0.12, dMax = max + span * 0.12;
+      const fyAt = (v) => fPadT + (dMax - v) / (dMax - dMin) * fPlotH;
+      const path = values.map((v, i) => (i === 0 ? 'M' : 'L') + fxAt(i, values.length).toFixed(1) + ',' + fyAt(v).toFixed(1)).join(' ');
+      return { path, topY: fPadT.toFixed(1), botY: (fPadT + fPlotH).toFixed(1), topLabel: fmtRaw(dMax), botLabel: fmtRaw(dMin) };
+    };
+    // sparkline de 2 séries no MESMO domínio — o espaço entre as linhas
+    // reflete o spread real (uma sparkline por série, normalizada sozinha,
+    // esconderia o spread) — agora também expõe o range para o eixo de valor.
+    const fluxoDualAxis = (a, b) => {
+      const all = a.concat(b);
+      const min = Math.min(...all), max = Math.max(...all);
+      const span = (max - min) || 1;
+      const dMin = min - span * 0.12, dMax = max + span * 0.12;
+      const fyAt = (v) => fPadT + (dMax - v) / (dMax - dMin) * fPlotH;
+      const build = (vals) => vals.map((v, i) => (i === 0 ? 'M' : 'L') + fxAt(i, vals.length).toFixed(1) + ',' + fyAt(v).toFixed(1)).join(' ');
+      return { a: build(a), b: build(b), topY: fPadT.toFixed(1), botY: (fPadT + fPlotH).toFixed(1), topLabel: fmtRaw(dMax), botLabel: fmtRaw(dMin) };
+    };
+    const fmtPct = (v) => (v >= 0 ? '+' : '') + v.toFixed(1).replace('.', ',') + '%';
+    const fmtRaw = (v) => v < 10 ? v.toFixed(2).replace('.', ',') : String(Math.round(v));
+    const tipoLabelMap = { indice: 'Índice', preco: 'Preço' };
+
+    const catalogo = Object.keys(RAW).map((id) => {
+      const r = RAW[id];
+      const variacao = (r.hist[r.hist.length - 1] - r.hist[0]) / r.hist[0] * 100;
+      const selected = selectedIds.includes(id);
+      const atLimitForRow = !selected && selectedIds.length >= MAX_SELECTED;
+      const cor = variacao >= 0 ? 'var(--success)' : 'var(--warning)';
+      const subLabel = r.fonte + ' · ' + r.pais + (r.fluxo !== '—' ? ' · ' + r.fluxo : '');
+      return {
+        id, nome: r.nome, subLabel, tipoLabel: tipoLabelMap[r.tipo],
+        sparkPath: sparkPath(r.hist, 64, 24, 3),
+        sparkColor: cor,
+        varLabel: fmtPct(variacao),
+        varColor: cor,
+        selected, notSelected: !selected,
+        actionLabel: (selected ? 'Remover ' : 'Adicionar ') + r.nome + (selected ? ' da comparação' : ' à comparação'),
+        actionBg: selected ? 'var(--accent)' : 'var(--surface-000)',
+        actionBorder: selected ? 'var(--accent)' : 'var(--surface-200)',
+        actionColor: selected ? 'var(--on-accent)' : 'var(--ink-300)',
+        actionOpacity: atLimitForRow ? '0.4' : '1',
+        toggle: () => toggleSelect(id),
+      };
+    });
+    const selectedChips = catalogo.filter((c) => c.selected);
+    const selectedCount = selectedChips.length;
+    const canAdd = selectedCount < MAX_SELECTED;
+    const atLimit = !canAdd;
+    const emptyState = selectedCount === 0;
+    const chartVisible = !emptyState;
+    const ctaStyleExtra = emptyState ? 'opacity:0.5;pointer-events:none;' : '';
+
+    // abas (Insights agora traz 3 seções empilhadas: Base 100, Insights de
+    // Compras e Detalhamento de Indicadores — a antiga aba "Detalhes" foi
+    // incorporada aqui, a pedido de Andre, 2026-09-28)
+    const tabInsightsOn = activeTab === 'insights';
+    const tabIaOn = activeTab === 'ia';
+    const tabImportOn = activeTab === 'import';
+    const tabActiveStyle = 'color:var(--accent-text);border-bottom-color:var(--accent);font-weight:700;';
+    const tabInactiveStyle = 'color:var(--ink-400);font-weight:600;';
+    const tabInsightsStyle = tabInsightsOn ? tabActiveStyle : tabInactiveStyle;
+    const tabIaStyle = tabIaOn ? tabActiveStyle : tabInactiveStyle;
+    const tabImportStyle = tabImportOn ? tabActiveStyle : tabInactiveStyle;
+
+    // ---- séries com projeção (extrapolação linear simples a partir dos
+    // últimos 4 pontos — estimativa ilustrativa, não previsão real) ----
+    const forecastExtend = (hist, n) => {
+      const tail = hist.slice(-4);
+      const step = (tail[tail.length - 1] - tail[0]) / (tail.length - 1);
+      const out = [];
+      let last = hist[hist.length - 1];
+      for (let i = 0; i < n; i++) { last = last + step; out.push(last); }
+      return out;
+    };
+    const trendLabel = (hist) => {
+      const last3 = hist.slice(-3);
+      const d1 = last3[1] - last3[0], d2 = last3[2] - last3[1];
+      if (d1 > 0 && d2 > 0) return 'Em alta consistente';
+      if (d1 < 0 && d2 < 0) return 'Em queda consistente';
+      return 'Estável / oscilando';
+    };
+
+    const selData = selectedIds.map((id) => ({ id, ...RAW[id] }));
+    const chartColors = ['var(--chart-1)', 'var(--chart-2)', 'var(--chart-3)', 'var(--chart-4)'];
+    const fullSeries = selData.map((r) => {
+      const future = forecastExtend(r.hist, NFUTURE);
+      const full = r.hist.concat(future);
+      const norm = full.map((v) => v / full[0] * 100);
+      return { id: r.id, nome: r.nome, hist: r.hist, norm };
+    });
+
+    const TOTAL_POINTS = 8 + NFUTURE;
+    // Ocupa a largura toda (1072) — a legenda de cores mora no cabeçalho do
+    // card (acima do gráfico), não mais à direita do plot, então o padR só
+    // precisa do espaço mínimo para os rótulos numéricos do eixo Y.
+    const CHART_W = 1072, CHART_H = 260;
+    const padL = 8, padR = 32, padT = 16, padB = 28;
+    const plotW = CHART_W - padL - padR, plotH = CHART_H - padT - padB;
+    const allNorm = fullSeries.flatMap((s) => s.norm);
+    const domMin = allNorm.length ? Math.floor(Math.min(...allNorm) / 5) * 5 - 2 : 95;
+    const domMax = allNorm.length ? Math.ceil(Math.max(...allNorm) / 5) * 5 + 2 : 105;
+    const xAt = (i) => padL + i * (plotW / (TOTAL_POINTS - 1));
+    const yAt = (v) => padT + (domMax - v) / (domMax - domMin) * plotH;
+    const pathFor = (norm, fromIdx, toIdx) => {
+      const pts = [];
+      for (let i = fromIdx; i <= toIdx; i++) pts.push((i === fromIdx ? 'M' : 'L') + xAt(i).toFixed(1) + ',' + yAt(norm[i]).toFixed(1));
+      return pts.join(' ');
+    };
+
+    const seriesInfo = fullSeries.map((s, idx) => {
+      const variacao12m = (s.hist[s.hist.length - 1] - s.hist[0]) / s.hist[0] * 100;
+      const variacaoProj = s.norm[s.norm.length - 1] - 100;
+      return {
+        id: s.id, nome: s.nome, color: chartColors[idx],
+        pathActual: pathFor(s.norm, 0, 7),
+        pathForecast: pathFor(s.norm, 7, TOTAL_POINTS - 1),
+        variacaoLabel: fmtPct(variacao12m),
+        variacaoColor: variacao12m >= 0 ? 'var(--success)' : 'var(--warning)',
+        variacaoUp: variacao12m >= 0, variacaoDown: variacao12m < 0,
+        variacaoAbsLabel: Math.abs(variacao12m).toFixed(1).replace('.', ',') + '%',
+        tendencia: trendLabel(s.hist),
+        projLabel: fmtPct(variacaoProj),
+      };
+    });
+    const colorById = {};
+    seriesInfo.forEach((s) => { colorById[s.id] = s.color; });
+
+    const gridLines = [];
+    for (let i = 0; i < 4; i++) {
+      const v = domMin + (domMax - domMin) * i / 3;
+      gridLines.push({ y: yAt(v).toFixed(1), label: String(Math.round(v)) });
+    }
+    const hojeX = xAt(7).toFixed(1);
+    const mesFevX = xAt(0).toFixed(1);
+    const mesMaiX = xAt(3).toFixed(1);
+    const mesSetX = xAt(7).toFixed(1);
+    const mesDezX = xAt(TOTAL_POINTS - 1).toFixed(1);
+    const plotRightX = (padL + plotW).toFixed(1);
+    const gridLabelX = (padL + plotW + 6).toFixed(1);
+
+    // ---- correlação (Pearson real sobre a variação período a período, só histórico) ----
+    const pctChanges = (vals) => vals.slice(1).map((v, i) => (v - vals[i]) / vals[i]);
+    const pearson = (a, b) => {
+      const n = a.length;
+      const ma = a.reduce((s, v) => s + v, 0) / n;
+      const mb = b.reduce((s, v) => s + v, 0) / n;
+      let num = 0, da = 0, db = 0;
+      for (let i = 0; i < n; i++) { num += (a[i] - ma) * (b[i] - mb); da += (a[i] - ma) ** 2; db += (b[i] - mb) ** 2; }
+      return da && db ? num / Math.sqrt(da * db) : 1;
+    };
+    const changes = selData.map((r) => pctChanges(r.hist));
+    // A intensidade da célula é um overlay neutro sobre o card — precisa
+    // escurecer no tema claro e CLAREAR no tema escuro (senão o overlay
+    // desaparece contra um card que já é escuro).
+    const corrCellStyle = (v) => {
+      const abs = Math.abs(v);
+      const alpha = (0.10 + abs * 0.75).toFixed(2);
+      const overlay = isDark ? '255,255,255' : '17,17,17';
+      const fgStrong = isDark ? '#111111' : '#FFFFFF';
+      return { bg: `rgba(${overlay},${alpha})`, fg: abs > 0.55 ? fgStrong : 'var(--ink-300)', label: v.toFixed(2).replace('.', ',') };
+    };
+    const corrRows = selData.map((rowR, i) => ({
+      nome: rowR.nome,
+      cells: selData.map((colR, j) => corrCellStyle(i === j ? 1 : pearson(changes[i], changes[j]))),
+    }));
+    const correlToggleOn = this.state.showCorrel ?? false;
+    const correlVisible = selectedCount >= 2 && correlToggleOn;
+
+    const mixedTypes = selectedIds.some((id) => RAW[id].tipo === 'indice') && selectedIds.some((id) => RAW[id].tipo === 'preco');
+    const base100On = this.state.base100 ?? mixedTypes;
+    const base100Note = base100On
+      ? (mixedTypes ? 'Ativado automaticamente: a seleção combina índice com preço.' : 'Os valores já estão em escalas semelhantes.')
+      : (mixedTypes ? 'Atenção: com tipos diferentes na seleção, comparar sem Base 100 pode distorcer a leitura.' : 'Sem normalização — adequado, pois os tipos selecionados já são comparáveis.');
+
+    // ---- insights de IA filtrados pela seleção atual ----
+    const aiInsights = AI_INSIGHTS_BANK
+      .filter((b) => b.ids.some((id) => selectedIds.includes(id)))
+      .map((b) => ({
+        text: b.text, date: b.date, sourcesLabel: b.sources + ' fontes',
+        dots: b.ids.filter((id) => selectedIds.includes(id)).map((id) => ({ color: colorById[id] })),
+      }));
+    const noInsights = aiInsights.length === 0;
+
+    // exemplo ilustrativo de chat, ancorado nos dados reais do 1º indicador selecionado
+    const exampleSubject = seriesInfo[0];
+    const exampleDirection = exampleSubject.variacaoLabel.charAt(0) === '+' ? 'subiu' : 'caiu';
+    const exampleQuestion = 'Por que o ' + exampleSubject.nome + ' ' + exampleDirection + ' esse mês?';
+    const relatedInsight = AI_INSIGHTS_BANK.find((b) => b.ids.includes(exampleSubject.id));
+    const chatExampleAnswer = exampleSubject.nome + ' ' + exampleSubject.variacaoLabel + ' nos últimos 12 meses (tendência: ' + exampleSubject.tendencia.toLowerCase() + ').'
+      + (relatedInsight ? ' Principal fator: ' + relatedInsight.text : '')
+      + ' Projeção até dez/2026: ' + exampleSubject.projLabel + '.';
+    // 2º turno do modal — liga a resposta de volta à decisão do comprador
+    // (renegociar contrato vs. segurar estoque), em vez de só descrever o dado.
+    const followupQuestion = 'Isso é motivo para eu renegociar o contrato agora?';
+    const followupAnswer = 'Com tendência "' + exampleSubject.tendencia.toLowerCase() + '" e projeção de ' + exampleSubject.projLabel + ' até dez/2026, pode valer abrir a negociação agora — mas confira o prazo e a cláusula de reajuste do seu contrato atual antes de decidir.';
+
+    // ---- aba Import/Export: só indicadores selecionados com fluxo definido ----
+    const fluxoCards = selData
+      .filter((r) => r.fluxo !== '—' && FLUXO_EXTRA[r.id])
+      .map((r) => {
+        const idx = selectedIds.indexOf(r.id);
+        const color = chartColors[idx];
+        const extra = FLUXO_EXTRA[r.id];
+        const fob = r.hist.map((v) => v / (1 + extra.margem));
+        const cif = r.hist;
+        const spread = (cif[cif.length - 1] - fob[fob.length - 1]) / fob[fob.length - 1] * 100;
+        const volDelta = (extra.volume[extra.volume.length - 1] - extra.volume[extra.volume.length - 2]) / extra.volume[extra.volume.length - 2] * 100;
+        const volAxis = fluxoAxis(extra.volume);
+        const fobCifAxis = fluxoDualAxis(fob, cif);
+        return {
+          id: r.id, nome: r.nome, pais: r.pais, fluxoLabel: r.fluxo, color, unidade: extra.unidade,
+          mesInicioX: fMesInicioX, mesFimX: fMesFimX,
+          volumeSpark: volAxis.path, volumeTopY: volAxis.topY, volumeBotY: volAxis.botY,
+          volumeTopLabel: volAxis.topLabel, volumeBotLabel: volAxis.botLabel,
+          volumeLatest: String(extra.volume[extra.volume.length - 1]),
+          volumeDeltaLabel: (volDelta >= 0 ? '+' : '') + volDelta.toFixed(1).replace('.', ',') + '% vs mês anterior',
+          volumeDeltaColor: volDelta >= 0 ? 'var(--success)' : 'var(--warning)',
+          fobSpark: fobCifAxis.a, cifSpark: fobCifAxis.b,
+          fobCifTopY: fobCifAxis.topY, fobCifBotY: fobCifAxis.botY,
+          fobCifTopLabel: fobCifAxis.topLabel, fobCifBotLabel: fobCifAxis.botLabel,
+          fobLatest: fmtRaw(fob[fob.length - 1]), cifLatest: fmtRaw(cif[cif.length - 1]),
+          spreadLabel: (spread >= 0 ? '+' : '') + spread.toFixed(1).replace('.', ',') + '%',
+        };
+      });
+    const hasFluxoSelected = fluxoCards.length > 0;
+    const noFluxoSelected = !hasFluxoSelected;
+
+    // ---- aba Detalhes: gráfico individual (valores reais, não normalizados) por indicador ----
+    const detalheCards = selData.map((r, idx) => {
+      const future = forecastExtend(r.hist, NFUTURE);
+      const full = r.hist.concat(future);
+      const min = Math.min(...full), max = Math.max(...full);
+      const span = (max - min) || 1;
+      const dMin = min - span * 0.06, dMax = max + span * 0.06;
+      // Largura calculada para preencher de verdade a célula do grid de 2
+      // colunas (conteúdo 1112px - gap 16px, /2, - padding+borda do card) —
+      // antes era um 500 arbitrário que sobrava/faltava em relação ao card.
+      const DETAIL_W = 514, DETAIL_H = 180;
+      const dPadL = 8, dPadR = 54, dPadT = 14, dPadB = 28;
+      const dPlotW = DETAIL_W - dPadL - dPadR, dPlotH = DETAIL_H - dPadT - dPadB;
+      const dxAt = (i) => dPadL + i * (dPlotW / (TOTAL_POINTS - 1));
+      const dyAt = (v) => dPadT + (dMax - v) / (dMax - dMin) * dPlotH;
+      const dPath = (fromIdx, toIdx) => {
+        const pts = [];
+        for (let i = fromIdx; i <= toIdx; i++) pts.push((i === fromIdx ? 'M' : 'L') + dxAt(i).toFixed(1) + ',' + dyAt(full[i]).toFixed(1));
+        return pts.join(' ');
+      };
+      const dGrid = [];
+      for (let i = 0; i < 3; i++) {
+        const v = dMin + (dMax - dMin) * i / 2;
+        dGrid.push({ y: dyAt(v).toFixed(1), label: fmtRaw(v) });
+      }
+      const s = seriesInfo[idx];
+      return {
+        id: r.id, nome: r.nome, pais: r.pais, fonte: r.fonte, color: chartColors[idx],
+        pathActual: dPath(0, 7), pathForecast: dPath(7, TOTAL_POINTS - 1),
+        hojeX: dxAt(7).toFixed(1),
+        // eixo de período (X) — mesma cadência mensal do gráfico Base 100
+        // (fev-dez/2026), antes ausente aqui: só havia o eixo de valores (Y).
+        mesInicioX: dxAt(0).toFixed(1), mesFimX: dxAt(TOTAL_POINTS - 1).toFixed(1),
+        grid1Y: dGrid[0].y, grid1Label: dGrid[0].label,
+        grid2Y: dGrid[1].y, grid2Label: dGrid[1].label,
+        grid3Y: dGrid[2].y, grid3Label: dGrid[2].label,
+        variacaoLabel: s.variacaoLabel, tendencia: s.tendencia,
+      };
+    });
+
+    return {
+      theme, isDark, toggleTheme, themeSwitchTrackStyle, themeSwitchThumbStyle,
+      favIndicadores, favCostModels, favContratos,
+      catalogo, selectedChips, selectedCount, canAdd, atLimit, emptyState, chartVisible, ctaStyleExtra,
+      catalogOpen, toggleCatalog,
+      tabInsightsOn, tabIaOn, tabImportOn, setTabInsights, setTabIa, setTabImport,
+      tabInsightsStyle, tabIaStyle, tabImportStyle,
+      seriesInfo, corrRows, correlVisible, correlToggleOn, toggleCorrel,
+      base100On, base100Note, toggleBase100,
+      aiInsights, noInsights, exampleQuestion, chatExampleAnswer,
+      chatModalOpen, openChatModal, closeChatModal, followupQuestion, followupAnswer,
+      fluxoCards, hasFluxoSelected, noFluxoSelected,
+      detalheCards,
+      grid1Y: gridLines[0].y, grid1Label: gridLines[0].label,
+      grid2Y: gridLines[1].y, grid2Label: gridLines[1].label,
+      grid3Y: gridLines[2].y, grid3Label: gridLines[2].label,
+      grid4Y: gridLines[3].y, grid4Label: gridLines[3].label,
+      hojeX, mesFevX, mesMaiX, mesSetX, mesDezX, plotRightX, gridLabelX,
+      periodoLabel, periodoOpen, togglePeriodo, cancelPeriodo, applyPeriodo, periodoPresetItems,
+      periodoDraftDeLabel, periodoDraftAteLabel,
+      calMonthALabel, calMonthBLabel, calMonthACells, calMonthBCells, diasSemanaLabels,
+    };
+  }
+}
+</script>
+</body>
+</html>
