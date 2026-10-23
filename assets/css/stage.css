@@ -79,3 +79,4 @@ html{scroll-padding-top:80px}
 .case-section figure.visual.visual-video[data-reveal].in{transform:none}
 .visual-video video{display:block;width:min(340px,100%);height:auto;margin-inline:auto;border-radius:var(--radius-lg);background:var(--color-surface)}
 .visual-video figcaption{text-align:center}
+figure.visual > video{display:block;width:100%;height:auto;border-radius:var(--radius-lg);background:var(--color-surface)} /* vídeo horizontal: mesma largura das imagens */
