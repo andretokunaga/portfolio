@@ -1,0 +1,53 @@
+/* Gerado de base-verdade/design-systems/portfolio.md — não editar valores aqui
+   sem antes aprovar a mudança na base de verdade.
+   Revisão 2026-10-23: tema escuro único. */
+
+:root {
+  color-scheme: dark;
+
+  --color-bg: #0A0A0F;
+  --color-surface: #13141A;
+  --color-surface-2: #1B1C24;
+  --color-text: #F1F1EC;
+  --color-text-muted: #A9ACB3;
+  --color-text-faint: #7A7D86;
+  --color-accent: #8B87FF;
+  --color-accent-strong: #ACA9FF;
+  --color-accent-fill-text: #0A0A0F;
+  --color-border: rgba(241, 241, 236, .12);
+  --color-border-strong: rgba(241, 241, 236, .28);
+  --shadow-sm: 0 2px 14px rgba(0, 0, 0, .40);
+  --glow: rgba(72, 12, 248, .45);
+
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --text-xs: 0.72rem;
+  --text-sm: 0.875rem;
+  --text-base: 1.0625rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.5rem;
+  --text-2xl: clamp(1.75rem, 3vw, 2.25rem);
+  --text-3xl: clamp(2.25rem, 4.5vw, 3.25rem);
+  --text-4xl: clamp(2.75rem, 7.5vw, 5.5rem);
+  --leading-body: 1.68;
+  --leading-tight: 1.05;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 48px;
+  --space-7: 64px;
+  --space-8: 96px;
+
+  --radius-sm: 2px;
+  --radius-md: 5px;
+  --radius-lg: 24px;
+
+  --content-max: 1220px;
+  --stage-max: 1360px;
+  --measure: 700px;
+}

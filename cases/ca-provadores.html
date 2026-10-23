@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>C&amp;A — Provadores · André Tokunaga</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,400..600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/stage.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="name" href="../index.html">André Tokunaga</a>
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a href="../index.html#cases">Cases</a></li>
+          <li><a href="../index.html#sobre">Sobre</a></li>
+          <li><a href="../index.html#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <header class="case-hero wrap">
+      <div class="tags">
+        <span class="tag">UI</span>
+        <span class="tag">Design System</span>
+        <span class="tag">IA</span>
+        <span class="tag status">Rascunho</span>
+      </div>
+      <h1>C&amp;A — Provadores</h1>
+      <p class="resumo">Provar uma roupa na loja costuma terminar em duas esperas: a busca por outro tamanho e a fila do caixa. Desenhei o totem que resolveu a primeira na Energia C&amp;A, no Shopping Center Norte, e depois evoluí o projeto para responder a ambições de negócio, levando o pagamento para dentro da cabine. Com ajuda de IA, essa evolução ficou pronta em 3 dias, contra 3 semanas do projeto original.</p>
+      <figure class="visual">
+        <img src="../assets/img/provadores/provadores-abertura.webp" alt="Três telas do totem de provador em sequência: a vitrine com a Camiseta Básica em destaque entre outras peças, a tela da peça com cor e tamanho, e a tela de pagamento com as parcelas do C&amp;A Pay" width="3600" height="1300" loading="lazy">
+        <figcaption>FIG. 01 · vitrine, peça e pagamento na V3 (proposta, não implementada). Fotos das peças geradas por IA</figcaption>
+      </figure>
+    </header>
+
+    <article class="case-body wrap">
+
+      <section class="case-section">
+        <h2>Contexto</h2>
+        <div class="body-copy">
+          <p>A Energia C&amp;A é uma loja-conceito, inaugurada em agosto de 2025, onde a empresa testa tecnologia em contato direto com o cliente. A primeira versão do provador levou à cabine um totem de tela sensível ao toque, que reconhecia sozinho as peças que a cliente levou para dentro, por meio de etiquetas lidas à distância.</p>
+          <p>Dali, ela pedia outro tamanho ou cor e acompanhava o pedido numa tela de andamento, parecida com a de um app de transporte, enquanto uma consultora da loja buscava a peça e a trazia até a cabine.</p>
+          <figure class="visual">
+            <img src="../assets/img/provadores/provadores-fachada.webp" alt="Fachada da loja Energia C&amp;A, no Shopping Center Norte: o letreiro C&amp;A em parede clara com iluminação suave, um painel de vídeo à esquerda e o salão de vendas aberto ao fundo" width="1447" height="1066" loading="lazy">
+            <figcaption>FIG. 02 · fachada da Energia C&amp;A, no Shopping Center Norte. Foto: Harper's Bazaar Brasil</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Meu papel</h2>
+        <div class="body-copy">
+          <p>Desenhei os fluxos e as jornadas da primeira versão, implementada na loja, num projeto de 3 semanas que incluiu todo o mapeamento da jornada e a implementação.</p>
+          <p>Depois conduzi a evolução do projeto, ainda não implementada. Refiz a jornada, o sistema visual e as telas com design assistido por IA em 3 dias: usei o Claude Design para as telas e o sistema visual, e o Gemini para os vídeos e as fotos. Cada decisão passou por mim.</p>
+          <figure class="visual">
+            <img src="../assets/img/provadores/provadores-tempo.webp" alt="Duas linhas do tempo. A primeira versão, implementada na loja: mapeamento da jornada, fluxos e jornadas e implementação, em 3 semanas. A V3, proposta feita com IA: jornada, sistema visual e telas, em 3 dias. Uma nota diz que as medidas estão fora de escala e não são equivalentes" width="2800" height="860" loading="lazy">
+            <figcaption>FIG. 03 · as 3 semanas da primeira versão e os 3 dias da V3 (fora de escala)</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Problema</h2>
+        <div class="body-copy">
+          <p>Para a cliente, o provador gerava três perguntas sem resposta. Se ela quer outro tamanho, não sabe se há na loja nem onde está. Se o tamanho ou a cor acabou, não sabe o que fazer a seguir. E, no fim, tem de enfrentar a fila do caixa.</p>
+          <p>A primeira versão respondia ao pedido de tamanho, mas o negócio queria mais: que o provador levasse mais clientes a usar o C&amp;A Pay, que facilitasse o parcelamento e que aumentasse o valor de cada compra, sem que a equipe do salão o visse como concorrente. Como transformar um provador que ajuda na prova em um provador que também fecha a venda?</p>
+          <figure class="visual">
+            <img src="../assets/img/provadores/provadores-duvidas.webp" alt="Três colunas, cada uma com uma dúvida da cliente e a resposta da V3. Dúvida 1: se há outro tamanho na loja e onde está, respondida com o estoque em tempo real e uma pessoa que traz a peça. Dúvida 2: o que fazer se o tamanho ou a cor acabou, respondida com a entrega em casa, sem custo. Dúvida 3: a fila do caixa, respondida com o pagamento na cabine, com C&amp;A Pay" width="2800" height="1440" loading="lazy">
+            <figcaption>FIG. 04 · as três dúvidas da cliente na cabine e a resposta da V3</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Benchmarks</h2>
+        <div class="body-copy">
+          <p>Estudei os provadores conectados que surgiram em 2015, como os da Ralph Lauren e da Rebecca Minkoff, onde a cliente pedia tamanhos e cores por uma tela e a equipe era avisada pelo celular. Segundo a própria marca, 30% das clientes pediam peças extras pela tela, o que me levou a incluir sugestões junto com o pedido.</p>
+          <p>Olhei também como grandes sistemas de design mostram "o pedido está em andamento" e quais tamanhos de botão são confortáveis num aparelho fixo. Isso definiu como a espera aparece e o tamanho dos botões, já que o totem é usado em pé e de passagem.</p>
+          <figure class="visual">
+            <img src="../assets/img/provadores/provadores-referencias.webp" alt="Três blocos. Ralph Lauren com a Oak Labs, 2015: RFID detecta as peças, pedido de tamanho e cor num espelho touch e aviso à equipe no app do iPad. Rebecca Minkoff, 2015: RFID e espelho touch, equipe avisada no smartphone, e 30% pedem peças extras pela tela, segundo a marca. O que foi levado para a V3: sugestões junto com o pedido e, dos guias de design, a espera e o tamanho dos botões" width="2800" height="1480" loading="lazy">
+            <figcaption>FIG. 05 · provadores conectados de 2015 e o que levei deles para a V3</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Decisões de design</h2>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">01</span>
+          <div>
+            <h3>Respondi às três dúvidas da cliente dentro da própria cabine</h3>
+            <div class="body-copy">
+              <p>O totem lê o estoque em tempo real e uma consultora traz a peça direto para a cabine, o que elimina o "será que tem?". Se o tamanho ou a cor acabou, a cliente encomenda a peça para entrega em casa, sem custo. E quando decide o que levar, guarda as peças numa caixa com tampa e, ao fechá-la, a tela passa para o pagamento, sem fila.</p>
+              <p>Descartei o QR code da primeira versão, que levava a cliente a terminar a compra em outro aparelho, e o caixa da loja como etapa final, porque as duas coisas tiravam a cliente do provador no momento de decidir.</p>
+              <figure class="visual">
+                <img src="../assets/img/provadores/provadores-caixa-pagamento.webp" alt="À esquerda, a tela da caixa da cabine, com o texto "Ficou com alguma peça?" e a caixa branca de tampa aberta com peças dobradas dentro. À direita, a tela de pagamento com C&amp;A Pay, as opções de parcelas e o resumo dos três itens" width="2800" height="1150" loading="lazy">
+                <figcaption>FIG. 06 · caixa com a tampa aberta e a tela de pagamento que se abre depois (V3, proposta). Vídeo e fotos gerados por IA</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">02</span>
+          <div>
+            <h3>Atrelei o provador ao C&amp;A Pay, onde o negócio já mede valor</h3>
+            <div class="body-copy">
+              <p>Clientes que pagam com C&amp;A Pay compram com mais recorrência, então a evolução cria uma jornada de compra exclusiva do C&amp;A Pay dentro do provador, e a experiência passa a fazer parte da proposta de valor desse meio de pagamento. Para a cliente, pagar ali é uma ida à loja mais premium, que resolve dores que ela já tinha.</p>
+              <p>A leitura do rosto confirma a compra com segurança, e as parcelas aparecem com clareza antes do toque em pagar. Apostei na transparência como a forma mais honesta de vender parcelamento com juros: a cliente escolhe a flexibilidade que quer e sabe o que está contratando. Essa lógica vem do Self-Checkout, onde a jornada redesenhada, com caminho próprio para o C&amp;A Pay e parcelas claras, dobrou a adesão ao C&amp;A Pay no canal.</p>
+              <figure class="visual">
+                <img src="../assets/img/provadores/provadores-pagamento-rosto.webp" alt="À esquerda, a tela Pagar com C&amp;A Pay, com as opções de parcelamento de 1x a 8x, a de 4x selecionada, e o resumo dos itens. À direita, a confirmação pelo rosto, com o texto "Fique de frente para confirmar" e o valor em 4x de R$ 75,23" width="2800" height="1150" loading="lazy">
+                <figcaption>FIG. 07 · escolha de parcelas e confirmação pelo rosto (V3, proposta). Imagem do rosto gerada por IA</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">03</span>
+          <div>
+            <h3>Fiz a consultora ganhar com cada venda feita no provador</h3>
+            <div class="body-copy">
+              <p>Se o pagamento sai do caixa, a consultora do salão pode sentir que o totem tira a sua comissão. Quem traz as peças para a cabine é bonificada por cada venda concluída ali, o que transforma o provador num aliado da equipe, e não num concorrente.</p>
+              <figure class="visual">
+                <img src="../assets/img/provadores/provadores-pedido-andamento.webp" alt="À esquerda, o painel Meu pedido na aba Na loja, com a Camiseta Básica tamanho G e o botão Pedir agora. À direita, o mesmo painel com o pedido enviado: Mariana está buscando as peças, barra na etapa 2 de 4 e as duas peças em busca" width="2800" height="1150" loading="lazy">
+                <figcaption>FIG. 08 · pedido na loja e acompanhamento da busca pela consultora (V3, proposta)</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">04</span>
+          <div>
+            <h3>Mostrei muitas peças como uma arara de roupas</h3>
+            <div class="body-copy">
+              <p>Para exibir muitos itens sem confundir a cliente, a vitrine rola para os lados, com a peça central em destaque e as vizinhas parcialmente visíveis, no estilo de uma pilha de capas de disco. A metáfora lembra uma arara de loja, mantém a cliente situada no todo e dá um efeito visual agradável.</p>
+              <p>Descartei uma grade com rolagem vertical, que perdia a peça em destaque e a ideia de arara.</p>
+              <figure class="visual">
+                <img src="../assets/img/provadores/provadores-vitrine-detalhes.webp" alt="À esquerda, a vitrine em rolagem lateral, com a Camiseta Básica ao centro, saias e outra camiseta nas laterais e o botão Abrir detalhes. À direita, a tela da peça aberta, com foto, cor, tamanhos e o tamanho que a cliente trouxe" width="2800" height="1150" loading="lazy">
+                <figcaption>FIG. 09 · vitrine em rolagem lateral e a tela da peça aberta (V3, proposta). Fotos das peças geradas por IA</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">05</span>
+          <div>
+            <h3>Levei a inteligência de recomendação para a consultora</h3>
+            <div class="body-copy">
+              <p>Para vender mais por cliente sem sobrecarregá-la com escolhas, a sugestão de peças não aparece enquanto ela escolhe: ela chega com a consultora. Ao receber o pedido, a consultora consulta as recomendações do sistema de vendas da C&amp;A para aquela cliente e traz, além do que foi pedido, peças que combinam. Só quando as peças chegam à cabine a tela as lista, à parte das que a cliente pediu, em "Peças que combinam".</p>
+              <p>A tecnologia fica invisível e o atendimento fica padronizado, independentemente do quanto a consultora conheça de moda.</p>
+              <figure class="visual">
+                <img src="../assets/img/provadores/provadores-mariana-chegou.webp" alt="À esquerda, o painel Meu pedido com o pedido em andamento, na etapa Buscando. À direita, o aviso Mariana chegou, com as duas peças pedidas e a lista Peças que combinam, com a Camiseta Oversized recomendada" width="2800" height="1150" loading="lazy">
+                <figcaption>FIG. 10 · pedido em andamento e a chegada da consultora com "Peças que combinam" (V3, proposta)</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Resultado</h2>
+        <div class="body-copy">
+          <p>Este case não traz métricas de uso. A evolução do projeto ainda não foi implementada, então não tem resultado medido, e o que posso afirmar é o tempo: 3 semanas para a primeira versão e 3 dias para a segunda.</p>
+          <p>As telas de pagamento, porém, não partem do zero: elas aplicam ao provador o que já funcionou no Self-Checkout, onde a adesão ao C&amp;A Pay no canal aumentou 100%. A V3 ainda não tem medição própria.</p>
+          <p>Os números não são equivalentes, porque as 3 semanas incluíram o mapeamento da jornada e a implementação, e os 3 dias cobriram só a proposta, sem teste com clientes.</p>
+          <figure class="visual">
+            <img src="../assets/img/provadores/provadores-comparativo.webp" alt="Comparativo em três etapas, escolher, receber e pagar. Na jornada atual: o totem lê as peças pela etiqueta, uma tela de andamento e um QR code para o site ou app quando não há estoque, e o caixa da loja com fila. Na V3, com miniaturas das telas: vitrine em rolagem lateral, painel do pedido com a busca e a chegada da consultora, e pagamento na cabine com a caixa fechada e C&amp;A Pay" width="2800" height="2020" loading="lazy">
+            <figcaption>FIG. 11 · a jornada atual ao lado das telas da V3 (proposta, sem medição de uso)</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Aprendizados</h2>
+        <div class="body-copy">
+          <p>Uma experiência bem desenhada ganha força quando nasce ligada a uma meta de negócio que se possa medir. Foi o que busquei ao atrelar o provador ao C&amp;A Pay, e hoje eu já combinaria essa métrica antes de desenhar a primeira tela.</p>
+          <p>A IA acelerou as telas e o sistema visual, mas quem decidiu como o provador deveria funcionar foi a leitura da operação da loja. Antes de chamar a nova versão de melhor, eu a levaria a um teste em loja, porque 3 dias contra 3 semanas mede esforço, não resultado.</p>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a class="link-arrow" href="../index.html">← Voltar para a Home</a>
+    </div>
+  </footer>
+  <script src="../assets/js/motion.js" defer></script>
+</body>
+</html>

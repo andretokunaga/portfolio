@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>COSTDRIVERS — Jornada freemium para redução de custo de aquisição · André Tokunaga</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,400..600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/stage.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="name" href="../index.html">André Tokunaga</a>
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a href="../index.html#cases">Cases</a></li>
+          <li><a href="../index.html#sobre">Sobre</a></li>
+          <li><a href="../index.html#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <header class="case-hero wrap">
+      <div class="tags">
+        <span class="tag">UI</span>
+        <span class="tag">Design System</span>
+      </div>
+      <h1 style="max-width: 26ch;">COSTDRIVERS — Jornada freemium para redução de custo de aquisição</h1>
+      <p class="resumo">A COSTDRIVERS, plataforma de indicadores econômicos usada há 20 anos por grandes compradores corporativos, crescia apoiada inteiramente no time comercial: cada conta nova exigia um vendedor guiando a implantação. Criei um fluxo de onboarding self-service que derrubou o custo de aquisição de R$1.000 para R$250, com a taxa de renovação de contratos subindo 15% e o NPS indo de 65 para 89 pontos.</p>
+      <figure class="visual">
+        <img src="../assets/img/costdrivers/costdrivers-resultado.webp" alt="Três cartões de resultado: custo de aquisição por cliente R$250, era R$1.000; renovação de contratos +15% de aumento na taxa; NPS 89, era 65" width="3840" height="2160">
+        <figcaption>FIG. 01 · resultados da jornada-base implementada em produção</figcaption>
+      </figure>
+    </header>
+
+    <article class="case-body wrap">
+
+      <section class="case-section">
+        <h2>Contexto</h2>
+        <div class="body-copy">
+          <p>COSTDRIVERS concentra os principais indicadores de commodities (milho, soja, etanol) e indicadores macroeconômicos (IGP-M, IPC-A, entre outros), com cálculo integrado de preços FOB/CIF para operações de comércio exterior. Grandes corporações como Cargill, Ambev e Nestlé usam a plataforma como base para negociar e renegociar contratos de compra e para definir orçamento.</p>
+          <p>A ferramenta carregava 20 anos de histórico técnico — a tela de busca de indicadores ainda rodava com a densidade e a resolução de um sistema legado, pensado para um público extremamente específico: compradores corporativos que já sabem exatamente o que procuram.</p>
+          <figure class="visual">
+            <img src="../assets/img/costdrivers/costdrivers-contexto-legado-atual.webp" alt="À esquerda, a tela legada de Indicadores, uma tabela densa em baixa resolução com filtro de países aberto. À direita, a tela Indexes and Prices em produção, com a lista de índices selecionados e dois gráficos de linha com projeção tracejada" width="2800" height="1096" loading="lazy">
+            <figcaption>FIG. 02 · tela legada de Indicadores e a versão em produção, Indexes and Prices</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Meu papel</h2>
+        <div class="body-copy">
+          <p>Atuei como Senior Product Designer na COSTDRIVERS, cliente atendido via Rizoma Labs, entre agosto de 2020 e março de 2024. Fui responsável pelo UI Kit para implementação em JS/Angular e pela modelagem de visualização de dados da plataforma, incluindo o fluxo de onboarding self-service e o Cost Models, o módulo que permite compor múltiplos indicadores em um único modelo de custo.</p>
+          <p>Revisitando esse trabalho agora para o portfólio, pesquisei benchmarks de produtos de dado denso (Bloomberg Terminal, Koyfin, Argus, IBM Carbon) e venho construindo um redesign de densidade para as telas de Indicadores e Cost Models, com Design System próprio e telas em alta fidelidade. Essa versão nunca chegou a rodar em produção, por dificuldades técnicas da stack da plataforma na época — o que existe hoje é o material do case.</p>
+          <figure class="visual">
+            <img src="../assets/img/costdrivers/costdrivers-jornada-fases.webp" alt="Linha do tempo com cinco fases numeradas: 1 Diagnóstico, 2 Framing (destacada), 3 Proposta, 4 MVP e 5 Launch, cada uma com uma breve descrição" width="2800" height="1100" loading="lazy">
+            <figcaption>FIG. 03 · cinco fases da jornada freemium, do diagnóstico ao lançamento</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Problema</h2>
+        <div class="body-copy">
+          <p>Toda conta nova em COSTDRIVERS entrava pelo time comercial: um vendedor apresentava a ferramenta, negociava e só depois o comprador via a plataforma por dentro. Isso encarecia cada aquisição e limitava o crescimento a quanto o time comercial conseguia atender.</p>
+          <p>Ao mesmo tempo, dentro da ferramenta, um comprador que já era cliente enfrentava telas com 20 anos de densidade acumulada: valores de índice só apareciam ao passar o mouse sobre o gráfico, e a composição de um Cost Model usava paletas diferentes em cada visualização — donut, barras e índice Base100 — para representar o mesmo conjunto de dados.</p>
+          <figure class="visual">
+            <img src="../assets/img/costdrivers/costdrivers-cost-models-cores.webp" alt="Três gráficos do Cost Models atual lado a lado, barras empilhadas, colunas e linhas Base100, cada um com cores diferentes para os mesmos indicadores" width="2554" height="825" loading="lazy">
+            <figcaption>FIG. 04 · Cost Models em produção, com uma paleta diferente em cada gráfico</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Benchmarks</h2>
+        <div class="body-copy">
+          <p>Para especificar o redesign de densidade, pesquisei como produtos de dado denso equivalentes resolvem o mesmo problema. Argus Direct Workspaces e Koyfin tratam cada indicador como um widget componível, não uma tela fixa — o oposto da lista estática de índices truncados que COSTDRIVERS mostrava. A IBM Carbon documenta cor consistente por série de dado como regra, exatamente o que faltava entre os três gráficos do Cost Models.</p>
+          <p>O Bloomberg Terminal trouxe a tensão mais importante para o redesign: a própria Bloomberg documenta que muda sua interface de forma sempre incremental, nunca abrupta, para não quebrar o hábito de um usuário que opera a ferramenta há anos. Um comprador que usa COSTDRIVERS desde antes da minha entrada não podia perder velocidade de leitura por causa de uma reforma visual.</p>
+          <!-- Figura de benchmarks (era FIG. 05 antes da renumeração) desconsiderada por decisão de André em 2026-10-22 (comparativo dos benchmarks). Mantida comentada para retomar depois; sem prints de terceiros aprovados.
+          <figure class="visual">
+            <div class="visual-placeholder"><span>[VISUAL: comparativo dos design systems e produtos estudados]</span></div>
+            <figcaption>FIG. XX · imagem a produzir</figcaption>
+          </figure>
+          -->
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Decisões de design</h2>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">01</span>
+          <div>
+            <h3>Substituí o onboarding guiado por um fluxo freemium, autosservido</h3>
+            <div class="body-copy">
+              <p>Antes, todo comprador entrava em COSTDRIVERS por um vendedor, que fazia a prospecção, agendava a demonstração e conduzia o cliente até o contrato. A parte mais pesada ficava nos bastidores: um analista de econometria preparava os cost-models um a um no ambiente de testes, e o cliente navegava livremente por ele por um período que ia de 15 dias a 12 meses. Depois do fechamento ainda vinham a criação do ambiente de produção, o treinamento e o compartilhamento de acessos. Descartei manter esse modelo integralmente porque o próprio produto, uma vez dentro da interface, já era capaz de demonstrar seu valor sem alguém guiando cada clique.</p>
+              <p>Criei um fluxo freemium em que a prospecção acontece por canais digitais, como LinkedIn Ads e envio em massa, e o comprador se cadastra sozinho na plataforma. A conta já nasce carregada com cost-models padrão, separados por indústria, e ele explora a ferramenta por 15 dias, com acesso a dados sem projeção futura. Só depois disso o time comercial entra, para fechar o contrato. O que antes dependia da preparação manual do analista passou a vir pronto.</p>
+              <figure class="visual">
+                <img src="../assets/img/costdrivers/costdrivers-onboarding-linha.webp" alt="Duas linhas do tempo. Venda assistida, onboarding guiado, em cinco etapas: prospecção, agendamento de demonstração, preparação de ambiente com analista de econometria preparando os cost-models um a um, demonstração conjunta e navegação livre de 15 dias a 12 meses. Venda autosservida, onboarding freemium, em quatro etapas: prospecção digital, cadastro na plataforma, cost-models padrão separados por indústria e demonstração de 15 dias com dados sem projeção futura. As duas terminam no mesmo passo, fechamento de vendas, com redução de 75% no custo de aquisição." width="2800" height="1654" loading="lazy">
+                <figcaption>FIG. 05 · onboarding guiado e freemium, com redução de 75% no custo de aquisição por cliente</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">02</span>
+          <div>
+            <h3>Modelei a composição de indicadores em um único gráfico, em vez de telas isoladas por índice</h3>
+            <div class="body-copy">
+              <p>Um comprador negocia o preço de um insumo como o pneu com base em vários indicadores ao mesmo tempo — petróleo, energia elétrica, transporte, mão de obra —, mas a ferramenta mostrava cada um em uma tela separada. Descartei manter os indicadores isolados porque isso deixava a conta de composição de custo real inteiramente na cabeça do comprador, fora da ferramenta.</p>
+              <p>Criei o Cost Models: o comprador define os indicadores e os pesos de cada um, e a plataforma acompanha a variação da composição inteira em um gráfico único, já ligado ao cálculo de reajuste dos Contratos.</p>
+              <figure class="visual">
+                <img src="../assets/img/costdrivers/costdrivers-cost-models.webp" alt="Tela de Cost Models em produção: à esquerda a composição do modelo em um gráfico de rosca com seis indicadores e os filtros de período e ponderação; à direita o gráfico de variação do modelo no período, com projeção tracejada" width="2800" height="1658" loading="lazy">
+                <figcaption>FIG. 06 · Cost Models em produção, com a composição de indicadores em um gráfico único</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">03</span>
+          <div>
+            <h3>Construí um redesign de densidade orientado por benchmarks, com Design System próprio — nunca chegou à produção</h3>
+            <div class="body-copy">
+              <p>Com a pesquisa de Argus, Koyfin, Carbon e Bloomberg, defini três mudanças para a densidade das telas atuais: tratar cada indicador como um widget configurável em vez de lista fixa, aplicar uma cor consistente por indicador entre os três gráficos do Cost Model, e dar à variação acumulada e à projeção de reajuste dos Contratos um destaque de alerta, hoje enterrados em texto pequeno.</p>
+              <p>Descartei entregar isso como mudança abrupta de interface, seguindo o princípio da própria Bloomberg de evolução incremental. Para sustentar essas decisões, criei um Design System dedicado — escala de preto com um único acento azul, paleta de gráfico validada para daltonismo, tipografia Manrope — e comecei a construir as telas em alta fidelidade. Essa versão nunca chegou a rodar em produção: esbarrou em dificuldades técnicas na stack existente da plataforma antes da minha saída.</p>
+              <figure class="visual">
+                <img src="../assets/img/costdrivers/costdrivers-decisao-cor.webp" alt="À esquerda, gráfico Base100 atual com seis séries em cores sem relação com os indicadores. À direita, o redesign com cartões e gráfico em que cada indicador mantém a mesma cor" width="2880" height="1620" loading="lazy">
+                <figcaption>FIG. 07 · gráfico Base100 atual (esquerda) e redesign com cor consistente por indicador (direita), proposta não implementada</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Resultado</h2>
+        <div class="body-copy">
+          <p>O fluxo self-service derrubou o custo de aquisição por cliente de R$1.000 para R$250. A taxa de renovação de contratos subiu 15%, e o NPS foi de 65 para 89 pontos — resultados da jornada-base, que inclui o onboarding self-service e o Cost Models, de fato implementada em produção.</p>
+          <p>O redesign de densidade orientado pelos benchmarks — hoje com Design System e telas em alta fidelidade construídos para este case — nunca chegou a rodar em produção, então não tem resultado de uso associado. Fica registrado aqui como a direção que eu proporia para essas telas, com a pesquisa e o sistema que a sustentam.</p>
+          <figure class="visual">
+            <img src="../assets/img/costdrivers/costdrivers-antes-depois.webp" alt="Três versões da tela de Indicadores: a legada em baixa resolução, a versão em produção com o gráfico Indexes and Prices e a proposta de redesign com a navegação lateral e os cartões de variação" width="3840" height="1800" loading="lazy">
+            <figcaption>FIG. 08 · tela legada, versão em produção (jornada-base) e proposta de redesign, esta não implementada</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Aprendizados</h2>
+        <div class="body-copy">
+          <p>A lição mais clara é sobre a diferença entre desenhar a decisão certa e conseguir implementá-la: o redesign de densidade tinha pesquisa sólida por trás, mas esbarrou em uma stack que não foi pensada para comportar aquela mudança — da próxima vez, validaria a viabilidade técnica junto com engenharia antes de aprofundar a especificação.</p>
+          <p>Fica claro também que nem todo ganho de produto vem de UI nova: o maior salto de CAC e retenção em COSTDRIVERS veio de tirar uma barreira comercial do caminho, não de redesenhar uma tela.</p>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a class="link-arrow" href="../index.html">← Voltar para a Home</a>
+    </div>
+  </footer>
+  <script src="../assets/js/motion.js" defer></script>
+</body>
+</html>

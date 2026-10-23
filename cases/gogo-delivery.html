@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>GoGo Delivery — Jornada do Entregador · André Tokunaga</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,400..600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../assets/css/tokens.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <link rel="stylesheet" href="../assets/css/stage.css">
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header">
+    <div class="wrap">
+      <a class="name" href="../index.html">André Tokunaga</a>
+      <nav aria-label="Navegação principal">
+        <ul>
+          <li><a href="../index.html#cases">Cases</a></li>
+          <li><a href="../index.html#sobre">Sobre</a></li>
+          <li><a href="../index.html#contato">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <header class="case-hero wrap">
+      <div class="tags">
+        <span class="tag">UI</span>
+        <span class="tag">Design System</span>
+        <span class="tag">IA</span>
+        <span class="tag status">Rascunho</span>
+      </div>
+      <h1>GoGo Delivery — Jornada do Entregador</h1>
+      <p class="resumo">A GoGo Delivery precisava de um aplicativo que desse conta da jornada inteira de um entregador autônomo — da escolha do Trabalho ao Pagamento no fim da Rota — sem nenhuma referência de mercado que resolvesse o problema por completo. Em 3 dias, defini os requisitos, criei o Design System da marca do zero e desenhei a jornada em alta fidelidade, cobrindo interação, sistema e IA aplicada à interface.</p>
+      <p class="disclaimer">Case fictício, construído como exercício de portfólio — GoGo Delivery, a empresa e o produto descritos não existem.</p>
+      <figure class="visual" style="margin-top: var(--space-5);">
+        <div class="visual-placeholder" style="max-width: var(--measure); min-height: 260px;"><span>[VISUAL: tela de Listagem de Trabalhos em alta fidelidade]</span></div>
+        <figcaption>FIG. 01 · imagem a produzir</figcaption>
+      </figure>
+    </header>
+
+    <article class="case-body wrap">
+
+      <section class="case-section">
+        <h2>Contexto</h2>
+        <div class="body-copy">
+          <p>GoGo Delivery é uma startup de entregas crowdsourced, no molde de iFood, Amazon Flex ou Coupang Flex: entregadores autônomos, sem vínculo fixo, escolhem Trabalhos oferecidos por empresas parceiras, retiram Pacotes em um Centro de Distribuição e cumprem uma Rota de entregas até o cliente final.</p>
+          <p>O aplicativo do entregador precisava cobrir a jornada inteira, do primeiro Trabalho disponível até o Pagamento no fim da Rota, operado majoritariamente em campo: sob sol forte, muitas vezes com luvas ou conexão instável — a mesma restrição que qualquer app de operação logística enfrenta.</p>
+          <figure class="visual">
+            <div class="visual-placeholder"><span>[VISUAL: comparação de referências visuais de apps de entrega]</span></div>
+            <figcaption>FIG. 02 · imagem a produzir</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Meu papel</h2>
+        <div class="body-copy">
+          <p>Atuei sozinho como UX designer no projeto, responsável pela leitura de mercado, pela criação do Design System e pelo desenho da jornada completa do entregador, em um projeto de 3 dias.</p>
+          <p>Escrevi os 10 requisitos da jornada como um briefing de produto, estruturei a divisão em telas e conduzi a montagem em alta fidelidade, com apoio de ferramentas de IA generativa para organizar fluxos e o Design System — um suporte de produção, não de decisão: cada escolha de cor, componente e fluxo foi minha.</p>
+          <p>Esse processo está em andamento: das 10 telas da jornada, 4 estão em alta fidelidade hoje. As demais, incluindo a tela de Bipagem — que deve aprofundar a evidência de IA já presente na Listagem de Trabalhos —, ainda estão em construção.</p>
+          <figure class="visual">
+            <div class="visual-placeholder"><span>[VISUAL: estrutura da jornada em 10 telas, com status de cada uma]</span></div>
+            <figcaption>FIG. 03 · imagem a produzir</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Problema</h2>
+        <div class="body-copy">
+          <p>Um marketplace de trabalhos crowdsourced empilha decisões de UI em cada etapa da jornada: descoberta do Trabalho, deslocamento até o Centro de Distribuição, carregamento físico do Veículo, leitura de Pacotes, Validação Facial e entrega — cada uma com sua própria janela de erro e seu próprio risco operacional.</p>
+          <p>O mercado de last-mile no Brasil deve saltar de US$ 5,0 bilhões em 2025 para US$ 18,0 bilhões em 2034, e o custo do último quilômetro já responde por 53% do frete total — uma fatia que subiu de 41% em 2018. Crescer nesse mercado depende de manter o custo por entrega sob controle, e a eficiência da jornada do entregador é onde esse custo se decide.</p>
+          <p>Nenhum benchmark do setor resolve o problema inteiro. O Coupang Flex, por exemplo, roda com verificação de identidade praticamente inexistente; o DoorDash otimiza a alocação de Trabalhos com IA, mas não expõe isso ao entregador. E o entregador autônomo já parte de uma desvantagem: segundo o IBGE, ganha 12% menos por hora e trabalha 5,4 horas a mais por semana do que quem não depende de aplicativo.</p>
+          <p>O desafio, então, não era resolver uma única tela, e sim orquestrar uma jornada inteira — física e digital — sem um único modelo de referência para copiar.</p>
+          <figure class="visual">
+            <div class="visual-placeholder"><span>[VISUAL: linha do tempo da jornada, das 10 etapas descritas no briefing]</span></div>
+            <figcaption>FIG. 04 · imagem a produzir</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Benchmarks</h2>
+        <div class="body-copy">
+          <p>A pesquisa cobriu duas frentes. Na primeira, mapeei como apps de entrega e frota resolvem a jornada do entregador — iFood, Amazon Flex, DoorDash, Meituan, Coupang Flex e Baemin Connect —, em busca de como cada um estrutura a oferta de Trabalho e onde usa IA. O achado central: a curadoria híbrida do iFood, que usa IA para sugerir Trabalhos compatíveis e deixa a escolha final com o entregador, foi o modelo mais próximo do que a GoGo Delivery precisava para a tela de Listagem de Trabalhos.</p>
+          <p>Na segunda frente, avaliei design systems candidatos para dar forma visual ao app. O Uber Base foi a referência mais próxima do problema — alto contraste, tipografia grande, um único acento de cor —, mas mantém a documentação de tokens fechada. Optei por um sistema híbrido: a base técnica madura do Material Design 3 para componentes e acessibilidade, com a linguagem visual de alto contraste do Uber Base por cima, ajustada às restrições reais de uso em campo.</p>
+          <figure class="visual">
+            <div class="visual-placeholder"><span>[VISUAL: comparativo dos design systems candidatos, com leitura de cada um]</span></div>
+            <figcaption>FIG. 05 · imagem a produzir</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Decisões de design</h2>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">01</span>
+          <div>
+            <h3>Priorizei curadoria de IA com escolha do entregador, e estendi o cálculo a ganho e custo da rota</h3>
+            <div class="body-copy">
+              <p>A pesquisa de benchmarks mostrou dois modelos de IA aplicados à alocação de Trabalho: o dispatch totalmente algorítmico do DoorDash e do Meituan, invisível ao motorista, e a curadoria híbrida do iFood, que filtra os Trabalhos compatíveis e deixa a escolha final com o entregador. Descartei o primeiro modelo porque pressupõe um motorista vinculado à operação, e o entregador da GoGo Delivery é autônomo por definição — sem vínculo, no mesmo molde do Coupang Flex. Tirar a decisão final das mãos dele contradiria a própria proposta de trabalho flexível que justifica a existência do app.</p>
+              <p>Estendi essa curadoria além da compatibilidade: a mesma IA calcula, entre as rotas próximas, qual Trabalho entrega o maior ganho ao entregador pelo menor custo de operação, incluindo o consumo de combustível estimado que aparece no card. A escolha final continua do entregador — a IA só qualifica as opções antes de chegarem a ele.</p>
+              <figure class="visual">
+                <div class="visual-placeholder"><span>[VISUAL: tela de Listagem de Trabalhos com a curadoria de compatibilidade destacada]</span></div>
+                <figcaption>FIG. 06 · imagem a produzir</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">02</span>
+          <div>
+            <h3>Coloquei consumo de combustível e tempo estimado no mesmo nível de destaque do Pagamento</h3>
+            <div class="body-copy">
+              <p>Dado do IBGE mostra que o entregador por aplicativo ganha 12% menos por hora do que quem não depende de plataforma, e o custo do último quilômetro já responde por 53% do frete total no setor. Um card de Trabalho que mostrasse só o valor a receber esconderia a conta real de quanto daquele valor vira combustível e quanto tempo o Trabalho consome. Descartei simplificar o card para exibir apenas o Pagamento, porque isso reproduziria a mesma assimetria de informação que já pressiona a renda por hora desse entregador, e coloquei consumo e tempo estimado como informação de primeira camada, ao lado do valor.</p>
+              <figure class="visual">
+                <div class="visual-placeholder"><span>[VISUAL: card de Trabalho com pagamento, tempo e consumo de combustível lado a lado]</span></div>
+                <figcaption>FIG. 07 · imagem a produzir</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">03</span>
+          <div>
+            <h3>Dei à Validação Facial e ao código de segurança um lugar central na jornada</h3>
+            <div class="body-copy">
+              <p>A razão principal não é só reduzir o risco de roubo de carga — é a garantia de entrega que a empresa contratante compra ao usar a GoGo Delivery: confirmar que quem está com o Pacote é de fato o entregador contratado, e que o Pacote certo chegou ao destino certo. Dados da NTC&amp;Logística registram 8.750 ocorrências de roubo de carga e cerca de R$900 milhões em prejuízo só em 2025, concentrados na região Sudeste — a perda que essa garantia evita.</p>
+              <p>O Coupang Flex, referência de benchmark, faz o oposto do que a GoGo Delivery deveria fazer — cadastro simplificado e verificação de identidade praticamente inexistente. Descartei tratar a Validação Facial e o código de segurança da portaria como etapas burocráticas de baixa prioridade visual: elas aparecem em destaque, com número grande e tela dedicada, porque a garantia de entrega é um argumento comercial da GoGo Delivery para suas empresas contratantes, não só uma exigência técnica.</p>
+              <figure class="visual">
+                <div class="visual-placeholder"><span>[VISUAL: código de segurança da portaria em destaque na tela de Rota ao CD]</span></div>
+                <figcaption>FIG. 08 · imagem a produzir</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">04</span>
+          <div>
+            <h3>Tirei o aceite do Trabalho de uma tela própria e resolvi com um gesto de slide dentro do card</h3>
+            <div class="body-copy">
+              <p>O desenho original previa uma tela de Solicitação, com o mapa da rota completa antes de decidir aceitar um Trabalho — mais informação, mas mais tempo, e tempo é justamente o recurso mais apertado para quem já trabalha 5,4 horas a mais por semana do que o entregador sem aplicativo, segundo o IBGE. Descartei essa etapa intermediária e levei a decisão para dentro do próprio card, com o Pagamento embutido no texto do botão.</p>
+              <p>Para o gesto de aceitar, usei o mesmo padrão de barra de slide que Uber e 99 aplicam para motoristas: quem dirige tem mais chance de toque acidental na tela, e um gesto de arrastar — já conhecido de quem usa esses apps — exige uma ação deliberada, ao contrário de um toque simples que pode acontecer sem querer.</p>
+              <figure class="visual">
+                <div class="visual-placeholder"><span>[VISUAL: card de Trabalho com a barra de ação em slide]</span></div>
+                <figcaption>FIG. 09 · imagem a produzir</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">05</span>
+          <div>
+            <h3>Escolhi um único acento de cor, resolvido por forma e não por matiz</h3>
+            <div class="body-copy">
+              <p>O verde de marca (#49E962) colidia com o verde já usado para indicar sucesso no sistema — um botão de ação primária podia parecer uma confirmação. Descartei mudar a cor de qualquer um dos dois lados, porque um único acento de ação é um dos princípios do Design System, e diluir isso enfraqueceria a leitura de hierarquia do app inteiro. Resolvi a colisão pela forma: ícones de ação usam contorno e ícones de confirmação usam preenchimento, então os dois continuam verdes, mas nunca têm a mesma silhueta.</p>
+              <figure class="visual">
+                <div class="visual-placeholder"><span>[VISUAL: comparação de ícones de ação vs. confirmação, mesma cor, formas diferentes]</span></div>
+                <figcaption>FIG. 10 · imagem a produzir</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">06</span>
+          <div>
+            <h3>Troquei a cor de marca no meio do processo, e reescrevi o contraste do zero</h3>
+            <div class="body-copy">
+              <p>A cor de marca original, um roxo escuro, foi trocada para o verde #49E962 para evitar confusão com outras marcas do mercado. A troca inverteu o comportamento de contraste do sistema: o roxo era escuro e aceitava texto branco; o verde é uma cor clara e saturada, com apenas 1,6:1 de contraste contra branco. Descartei manter o texto branco no botão preenchido só porque era a regra anterior — recalculei toda a rampa do acento e passei o botão primário para texto escuro, a única combinação que atinge o padrão de acessibilidade.</p>
+              <figure class="visual">
+                <div class="visual-placeholder"><span>[VISUAL: botão de ação primária, versão roxa com texto branco x versão verde com texto escuro]</span></div>
+                <figcaption>FIG. 11 · imagem a produzir</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <div class="decision">
+          <span class="num" aria-hidden="true">07</span>
+          <div>
+            <h3>Tratei mapa, planta do Centro de Distribuição e diagrama do Veículo como diagramas reais da operação, não como ilustrações decorativas</h3>
+            <div class="body-copy">
+              <p>Um diagrama fiel ao espaço real — a planta do Centro de Distribuição com a doca de destino marcada, o desenho do Veículo com a posição de cada Pacote — permite que o entregador localize rapidamente onde está e o que precisa fazer a seguir, sem traduzir um texto em uma ação espacial. Instruções assim, claras e no formato do dia a dia operacional, aumentam a eficiência de conclusão de cada etapa e reduzem a chance de erro.</p>
+              <p>Isso importa mais ainda no Carregamento do Veículo, porque o algoritmo que ordena os Pacotes não calcula só a ocupação do espaço — calcula também a facilidade de desembarque, priorizando que o próximo Pacote a ser entregue esteja sempre mais acessível. O diagrama é o que torna esse cálculo visível e acionável para o entregador.</p>
+              <figure class="visual">
+                <div class="visual-placeholder"><span>[VISUAL: planta do Centro de Distribuição na tela de Chegada na Doca]</span></div>
+                <figcaption>FIG. 12 · imagem a produzir</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Resultado</h2>
+        <div class="body-copy">
+          <p>Ainda não há dado de uso — o app não foi implementado em produção. O resultado, por ora, é de entrega: um Design System completo, com 14 componentes documentados e regras de contraste e iconografia resolvidas, e 4 das 10 telas da jornada em alta fidelidade, cobrindo os três pilares — UI, Design System e IA, esta evidenciada pela curadoria e pelo cálculo de ganho e custo de rota na Listagem de Trabalhos.</p>
+          <p>A tela de Bipagem e o protótipo interativo, ainda em construção, devem aprofundar a evidência de IA ao expor o cálculo de ordenação de carregamento por facilidade de desembarque — hoje só descrito no requisito, ainda não construído.</p>
+          <figure class="visual">
+            <div class="visual-placeholder"><span>[VISUAL: visão geral das 10 telas do canvas, com status de cada uma]</span></div>
+            <figcaption>FIG. 13 · imagem a produzir</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <h2>Aprendizados</h2>
+        <div class="body-copy">
+          <p>A lição mais clara até aqui é sobre sequência: definir os 10 requisitos da jornada por escrito, antes de abrir qualquer tela, evitou que eu inventasse conteúdo no meio da montagem. Mesmo assim, elementos como mapa, diagrama de Veículo e planta do Centro de Distribuição só apareceram como lacuna quando a tela já estava sendo construída — da próxima vez, listaria esses elementos sem componente formal antes de começar, não durante.</p>
+          <p>Como o projeto ainda não terminou, este aprendizado é parcial e deve crescer quando a Bipagem e o protótipo interativo estiverem prontos.</p>
+          <figure class="visual">
+            <div class="visual-placeholder"><span>[VISUAL: lista dos elementos sem componente formal, mapeados durante a montagem]</span></div>
+            <figcaption>FIG. 14 · imagem a produzir</figcaption>
+          </figure>
+        </div>
+      </section>
+
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <a class="link-arrow" href="../index.html">← Voltar para a Home</a>
+    </div>
+  </footer>
+  <script src="../assets/js/motion.js" defer></script>
+</body>
+</html>
