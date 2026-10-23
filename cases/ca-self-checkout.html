@@ -40,9 +40,9 @@
       <h1>C&amp;A — Self-Checkout</h1>
       <p class="resumo">O Self-Checkout da C&amp;A precisava ficar mais rápido e, ao mesmo tempo, vender mais crédito — duas metas que se contradizem dentro da mesma tela. Em 4 semanas redesenhei a jornada para resolver essa contradição, reduzindo o tempo de compra de 5min para 3min e dobrando a adesão ao C&amp;A Pay no canal.</p>
       <figure class="visual">
-        <div class="visual-placeholder" style="max-width: var(--measure); min-height: 260px;"><span>[VISUAL: tela de resumo de pedido, antes e depois]</span></div>
-        <figcaption>FIG. 01 · imagem a produzir</figcaption>
-      </figure>
+            <img src="../assets/img/self-checkout/self-checkout-resumo.webp" alt="Antes: tela Sua sacola em tema escuro. Depois: tela 06 produtos adicionados, etapa 1 de 3, em tema claro" width="2800" height="1296" loading="eager">
+            <figcaption>FIG. 01 · tela de resumo da compra, antes e depois</figcaption>
+          </figure>
     </header>
 
     <article class="case-body wrap">
@@ -54,8 +54,12 @@
           <p>Mas ele não é apenas uma ferramenta de eficiência operacional, e sim também um canal de venda de serviços. Adesão ao C&amp;A Pay, planos de pagamento com juros (PCJ), cashback e benefícios exclusivos precisam caber em uma jornada que, por definição, deveria ser curta.</p>
           <p>Some-se a isso o perfil de quem opera a máquina: clientes na faixa de 50+, sozinhas, em um ambiente de loja naturalmente escuro.</p>
           <figure class="visual">
-            <div class="visual-placeholder"><span>[VISUAL: foto/diagrama do terminal híbrido em loja]</span></div>
-            <figcaption>FIG. 02 · imagem a produzir</figcaption>
+            <img src="../assets/img/self-checkout/self-checkout-terminal.webp" alt="Três quadros do terminal em loja: totem Auto atendimento com a tela e a máquina de cartão, o baú com a placa deposite suas peças dentro do baú, e os itens da sacola na tela" width="1400" height="934" loading="lazy">
+            <figcaption>FIG. 02 · terminal em loja, do totem ao baú de peças</figcaption>
+          </figure>
+          <figure class="visual visual-video">
+            <video src="../assets/video/self-checkout-leitor.mp4" poster="../assets/img/self-checkout/self-checkout-leitor-poster.webp" width="480" height="848" autoplay muted loop playsinline preload="metadata" aria-label="Uma pessoa passa o leitor de código de barras nas etiquetas de duas peças, enquanto os itens entram na tela do terminal"></video>
+            <figcaption>FIG. 03 · leitura manual por código de barras, para peças que o cesto não reconhece</figcaption>
           </figure>
         </div>
       </section>
@@ -77,7 +81,7 @@
           <p>O diagnóstico cruzou tempo de processamento por tela, números de adesão por produto em Self vs PDV vs Site/App e heurísticas de usabilidade. Dele saíram as três metas do projeto: reduzir a jornada de 5min para 2min, atingir paridade de adesão de cartões com o PDV e paridade de adesão de PCJ com o PDV.</p>
           <figure class="visual">
             <img src="../assets/img/self-checkout/self-checkout-diagnostico.webp" alt="Barras de tempo por transição, Self-Checkout anterior contra PDV: biometria até a conclusão do pagamento leva 52s contra 14s. Nota sobre a adesão ao C&amp;A Pay, abaixo do PDV e do site/app" width="2800" height="1580" loading="lazy">
-            <figcaption>FIG. 03 · diagnóstico de tempo por transição, Self-Checkout anterior x PDV</figcaption>
+            <figcaption>FIG. 04 · diagnóstico de tempo por transição, Self-Checkout anterior x PDV</figcaption>
           </figure>
         </div>
       </section>
@@ -90,7 +94,7 @@
           <p>Ou seja, não havia referência de mercado justamente onde o problema era mais difícil. O que dava para extrair do Uniqlo era o princípio de ultrassimplificação da operação, e minha decisão foi aplicá-lo a um território que nenhum outro player tinha enfrentado.</p>
           <figure class="visual">
             <img src="../assets/img/self-checkout/self-checkout-benchmark.webp" alt="Toques na jornada de cartão: C&amp;A nova 6, C&amp;A anterior 9, Renner 8, Riachuelo 8, Zara 8, Uniqlo 7, Decathlon 4, com a indicação de quem vende produto financeiro" width="2800" height="1580" loading="lazy">
-            <figcaption>FIG. 04 · benchmark de toques na jornada de cartão e venda de produto financeiro</figcaption>
+            <figcaption>FIG. 05 · benchmark de toques na jornada de cartão e venda de produto financeiro</figcaption>
           </figure>
         </div>
       </section>
@@ -108,7 +112,7 @@
               <p>A alternativa descartada foi manter os popups e buscar o ganho de tempo apenas no back-end. Ela resolveria o carregamento, mas não a interrupção percebida, que é o que de fato faz a jornada parecer longa.</p>
               <figure class="visual">
                 <img src="../assets/img/self-checkout/self-checkout-popup-antes-depois.webp" alt="Esquema de popup de oferta antes e oferta dentro da tela depois, com 9 para 6 toques e 52s para 25s no pagamento com C&amp;A Pay" width="2800" height="1340" loading="lazy">
-                <figcaption>FIG. 05 · esquema ilustrativo, oferta em popup x dentro da tela. Números da jornada como um todo</figcaption>
+                <figcaption>FIG. 06 · esquema ilustrativo, oferta em popup x dentro da tela. Números da jornada como um todo</figcaption>
               </figure>
             </div>
           </div>
@@ -123,9 +127,9 @@
               <p>A razão é que o sistema vigente foi calibrado para telas pessoais, seguras na mão, com o usuário escolhendo a distância de leitura. Um terminal fixo em loja é outro problema de legibilidade e merecia uma regra própria.</p>
               <p>A alternativa descartada era aplicar overrides caso a caso. Funcionaria naquelas telas, mas criaria uma divergência silenciosa do sistema e não serviria aos próximos produtos de loja que viessem depois.</p>
               <figure class="visual">
-                <div class="visual-placeholder"><span>[VISUAL: comparativo de contraste simulando iluminação de loja]</span></div>
-                <figcaption>FIG. 06 · imagem a produzir</figcaption>
-              </figure>
+            <img src="../assets/img/self-checkout/self-checkout-contraste.webp" alt="Antes: tela Pagamento com fundo escuro. Depois: tela Como deseja pagar? com fundo claro" width="2800" height="1232" loading="lazy">
+            <figcaption>FIG. 07 · tela de pagamento, fundo escuro x fundo claro (telas reais)</figcaption>
+          </figure>
             </div>
           </div>
         </div>
@@ -139,9 +143,9 @@
               <p>Esse segundo botão identifica automaticamente se a cliente é pré-aprovada, se o limite cobre a compra e qual benefício ela recebe naquela compra específica. Com isso, a oferta de crédito deixa de ser uma pergunta no meio do caminho e passa a ser uma porta de saída — quem quer apenas pagar segue reto, quem tem uma boa oferta vê o valor antes de decidir.</p>
               <p>Quando a cliente escolhe os demais métodos, o C&amp;A Pay continua destacado com o benefício correspondente, e é nessa tela que o cashback, exclusivo de compras com o cartão, pode ser aplicado. Descartei o desenho com botão único de pagamento seguido da tela de seleção, porque ele empurrava a oferta para mais um passo e a diluía entre os demais meios.</p>
               <figure class="visual">
-                <div class="visual-placeholder"><span>[VISUAL: tela de resumo com os dois botões e o estado de pré-aprovada]</span></div>
-                <figcaption>FIG. 07 · imagem a produzir</figcaption>
-              </figure>
+            <img src="../assets/img/self-checkout/self-checkout-botoes.webp" alt="Recorte da tela de resumo da compra com os botões Escolher outros meios de pagamento, em até 3x, e Pagar com C&amp;A Pay, em até 8x" width="2800" height="986" loading="lazy">
+            <figcaption>FIG. 08 · resumo da compra com os dois botões de pagamento</figcaption>
+          </figure>
             </div>
           </div>
         </div>
@@ -154,10 +158,6 @@
               <p>A cliente do Self-Checkout não opera apenas uma interface, mas também uma máquina complexa: precisa posicionar as peças no baú para a leitura por RFID e remover a bolacha antifurto, etapa que uma jornada autosserviçada frequentemente não cumpre.</p>
               <p>Por isso, toda instrução de operação física passou a exibir um vídeo real em drawer, no lugar das imagens estáticas que existiam antes. Chamamos isso de jornada phygital, em que metade da tarefa está na tela e metade no mundo físico.</p>
               <p>A imagem estática obriga a cliente a traduzir um desenho em um gesto, enquanto o vídeo entrega o gesto pronto. Foi a forma mais direta de atacar a etapa da bolacha antifurto, que era a maior dor da jornada.</p>
-              <figure class="visual">
-                <div class="visual-placeholder"><span>[VISUAL: drawer de instrução com vídeo, em sequência com o baú RFID]</span></div>
-                <figcaption>FIG. 08 · imagem a produzir</figcaption>
-              </figure>
             </div>
           </div>
         </div>
@@ -171,9 +171,9 @@
               <p>Era muita regra para uma tela que não podia custar tempo. A saída não estava em simplificar a oferta, já que ela é a alavanca comercial do canal, mas em absorver a complexidade dentro do componente — criei cards capazes de acoplar mais informação por unidade, botões que comunicam preço de forma mais agressiva e uma nova tabela totalizadora.</p>
               <p>A alternativa óbvia seria reduzir o número de planos exibidos, mas ela foi descartada porque encurtaria a tela ao custo direto de receita.</p>
               <figure class="visual">
-                <div class="visual-placeholder"><span>[VISUAL: tela de parcelamento com os planos personalizados]</span></div>
-                <figcaption>FIG. 09 · imagem a produzir</figcaption>
-              </figure>
+            <img src="../assets/img/self-checkout/self-checkout-parcelamento.webp" alt="Antes: tela Parcelamento com duas opções e um botão de mais opções. Depois: tela Selecione o parcelamento com três planos em destaque e quatro formas abaixo" width="2800" height="1304" loading="lazy">
+            <figcaption>FIG. 09 · tela de parcelamento, antes e depois (telas reais)</figcaption>
+          </figure>
             </div>
           </div>
         </div>
@@ -185,10 +185,6 @@
           <p>Nenhuma cliente vai afirmar em um teste que prefere determinada solução de adesão ao crédito, e seria inocente desenhar um teste esperando esse tipo de resposta. Mas clareza de operação e facilidade de avanço entre tarefas eram pontos que precisavam ser validados antes de a solução subir.</p>
           <p>O teste foi feito em loja, em um iPad com resolução e tamanho similares aos do PDV real, com clientes recrutadas na saída do caixa. O recrutamento cobriu os dois perfis que importavam: quem já tinha aderido ao C&amp;A Pay e quem ainda não.</p>
           <p>O escopo foi deliberadamente estreito — não testamos a jornada de adesão, e sim se estava claro onde clicar, se a posição de cada elemento tinha lógica e se as informações faziam sentido. Os resultados foram positivos, indicando clareza de operação e de seleção, além da percepção de uma jornada mais rápida e com menos decisões a tomar.</p>
-          <figure class="visual">
-            <div class="visual-placeholder"><span>[VISUAL: registro do teste em loja — iPad no balcão, ou o setup de recrutamento]</span></div>
-            <figcaption>FIG. 10 · imagem a produzir</figcaption>
-          </figure>
         </div>
       </section>
 
@@ -199,7 +195,7 @@
           <p>As metas originais eram mais duras — 2min de jornada e paridade completa com o PDV — e o projeto entregou parte desse caminho. As melhorias seguintes já estão mapeadas e, pelas projeções, devem fechar a diferença.</p>
           <figure class="visual">
             <img src="../assets/img/self-checkout/self-checkout-resultado.webp" alt="Tempo da jornada de 5min para 3min, com meta de 2min, e adesão ao C&amp;A Pay no canal +100%" width="2800" height="840" loading="lazy">
-            <figcaption>FIG. 11 · resultado em produção, tempo da jornada e adesão ao C&amp;A Pay</figcaption>
+            <figcaption>FIG. 10 · resultado em produção, tempo da jornada e adesão ao C&amp;A Pay</figcaption>
           </figure>
         </div>
       </section>
@@ -222,5 +218,11 @@
     </div>
   </footer>
   <script src="../assets/js/motion.js" defer></script>
+  <script>
+    /* movimento reduzido: o vídeo em loop fica parado na imagem de capa, com controles */
+    if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.querySelectorAll('video[autoplay]').forEach(function (v) { v.removeAttribute('autoplay'); v.pause(); v.controls = true; });
+    }
+  </script>
 </body>
 </html>

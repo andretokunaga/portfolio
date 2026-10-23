@@ -73,3 +73,9 @@ html{scroll-padding-top:80px}
 .sobre-corpo .body-copy{display:flex;flex-direction:column;gap:var(--space-3)}
 .footer-grid{grid-template-columns:1fr 1fr}
 @media(max-width:860px){.sobre{grid-template-columns:1fr;gap:var(--space-6)}.sobre-intro{position:static}}
+/* vídeo em loop (leitura manual): vertical, em coluna estreita, fora do breakout das figuras largas */
+.case-section figure.visual.visual-video,.decision figure.visual.visual-video{width:auto;left:auto;transform:none}
+.case-section figure.visual.visual-video[data-reveal]{transform:translateY(22px)}
+.case-section figure.visual.visual-video[data-reveal].in{transform:none}
+.visual-video video{display:block;width:min(340px,100%);height:auto;margin-inline:auto;border-radius:var(--radius-lg);background:var(--color-surface)}
+.visual-video figcaption{text-align:center}
